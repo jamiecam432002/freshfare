@@ -1,54 +1,62 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import toast from "react-hot-toast";
 
-import { deleteProduct } from "../../services/apiProducts";
 import { formatCurrency } from "../../utils/helpers";
 
 import CreateProductForm from "./CreateProductForm";
+import { HiPencil, HiTrash } from "react-icons/hi2";
+import { useDeleteProduct } from "./useDeleteProduct";
+import Modal from "../../ui/Modal";
 
 export default function ProductRow({ product }) {
   const [showForm, setShowForm] = useState(false);
-  const { id, name, price, sku, quantity, active } = product;
+  const {
+    id,
+    name,
+    price,
+    sku,
+    quantity,
+    active,
+    categories: category,
+    suppliers: supplier,
+  } = product;
   const isActive = active ? "YES" : "NO";
-  const queryClient = useQueryClient();
-  console.log(product);
-
-  const { isPending: isDeleting, mutate } = useMutation({
-    mutationFn: (id) => deleteProduct(id),
-    onSuccess: () => {
-      toast.success("product was deleted");
-      queryClient.invalidateQueries({
-        queryKey: ["products"],
-      });
-    },
-    onError: () => {
-      toast.error("product could not be deleted");
-    },
-  });
+  const { isDeleting, deleteProduct } = useDeleteProduct();
 
   return (
     <>
       <div
         role="row"
-        className="grid grid-cols-6 items-center gap-[2.4rem] border-b border-[--color-grey-100] px-[2.4rem] py-[1.2rem]"
+        className="grid grid-cols-[30rem_5rem_10rem_25rem_6rem_5rem_auto_5rem] items-center gap-[2.6rem] border-b border-[--color-grey-100] px-[2.4rem] py-[1.2rem]"
       >
         <div className="text-[1.6rem] font-semibold text-[--color-grey-600]">
           {name}
         </div>
 
         <div>{quantity}</div>
-        <div>{sku}</div>
+        <div>{category.name}</div>
+        <div>{supplier.name}</div>
+
         <div>{isActive}</div>
         <div className="font-semibold">{formatCurrency(price)}</div>
+        <div>{sku}</div>
         <div>
-          <button onClick={() => setShowForm((show) => !show)}>Edit</button>
-          <button onClick={() => mutate(id)} disabled={isDeleting}>
-            Delete
-          </button>
+          <Modal>
+            <Modal.Open opens="edit">
+              <button>
+                <HiPencil />
+              </button>
+            </Modal.Open>
+
+            <button onClick={() => deleteProduct(id)} disabled={isDeleting}>
+              <HiTrash />
+            </button>
+
+            <Modal.Window name="edit">
+              <CreateProductForm productToEdit={product} />
+            </Modal.Window>
+          </Modal>
         </div>
       </div>
-      {showForm && <CreateProductForm productToEdit={product} />}
     </>
   );
 }

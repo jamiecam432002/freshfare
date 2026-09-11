@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
 const TableContext = createContext();
 
@@ -18,7 +18,7 @@ function Header({ children }) {
   return (
     <header
       role="row"
-      className="grid grid-cols-6 gap-[2.4rem] border-b border-[--color-grey-100] bg-[--color-grey-50] px-[2.4rem] py-[1.6rem] font-semibold uppercase tracking-[0.4px] text-[--color-grey-600]"
+      className="grid grid-cols-[30rem_5rem_10rem_25rem_6rem_5rem_auto_5rem] gap-[2.6rem] border-b border-[--color-grey-100] bg-[--color-grey-50] px-[2.4rem] py-[1.6rem] font-semibold uppercase tracking-[0.4px] text-[--color-grey-600]"
     >
       {children}
     </header>

@@ -1,7 +1,9 @@
 import supabase from "./supabase";
 
 export async function getProducts() {
-  const { data: products, error } = await supabase.from("products").select("*");
+  const { data: products, error } = await supabase
+    .from("products")
+    .select("*, suppliers(*), categories(*)");
 
   if (error) {
     console.error(error);
@@ -35,9 +37,19 @@ export async function createProduct(newProduct) {
   return data;
 }
 
+export async function deleteProduct(id) {
+  const { data, error } = await supabase.from("products").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Product could not be deleted");
+  }
+
+  return data;
+}
+
 export async function updateProduct(product) {
   const id = Number(product.id);
-  //console.log(typeof id);
   const updatedProductForInsert = {
     active: product.active,
     category_id: product.category_id,
@@ -48,7 +60,6 @@ export async function updateProduct(product) {
     sku: product.sku,
     supplier_id: product.supplier_id,
   };
-  //console.log(updatedProductForInsert, id);
 
   const { data, error } = await supabase
     .from("products")
@@ -59,16 +70,5 @@ export async function updateProduct(product) {
   if (error) {
     throw new Error(error.message);
   }
-  return data;
-}
-
-export async function deleteProduct(id) {
-  const { data, error } = await supabase.from("products").delete().eq("id", id);
-
-  if (error) {
-    console.error(error);
-    throw new Error("Product could not be deleted");
-  }
-
   return data;
 }

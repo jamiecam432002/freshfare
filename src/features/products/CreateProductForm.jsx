@@ -10,19 +10,17 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 
 export default function CreateProductForm({ productToEdit = {} }) {
-  const { id, ...editValues } = productToEdit;
-  const isEditing = Boolean(id);
+  const { id: editId, ...editValues } = productToEdit;
+  const isEditing = Boolean(editId);
 
-  const { data: categories = [] } = useQuery({
+  const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: getCategories,
   });
-  const { data: suppliers = [] } = useQuery({
+  const { data: suppliers } = useQuery({
     queryKey: ["suppliers"],
     queryFn: getSuppliers,
   });
-
-  const queryClient = useQueryClient();
 
   const {
     register,
@@ -34,8 +32,16 @@ export default function CreateProductForm({ productToEdit = {} }) {
     defaultValues: isEditing ? editValues : {},
   });
 
+  useEffect(() => {
+    if (!categories || !suppliers) return;
+    reset();
+  }, [categories, suppliers, reset]);
+
+  const queryClient = useQueryClient();
+
   async function onSubmit(formData) {
     if (formData.id !== "") {
+      console.log("id is present");
       updateProductMutation.mutate(formData);
     } else {
       createProductMutation.mutate(formData);
@@ -55,13 +61,14 @@ export default function CreateProductForm({ productToEdit = {} }) {
   const createProductMutation = useMutation({
     mutationFn: createProduct,
     onSuccess: () => {
-      toast.success("product was successfully created");
+      toast.success("Product was successfully created");
       queryClient.invalidateQueries({
         queryKey: ["products"],
       });
 
       reset();
     },
+    onError: (err) => toast.error(err.message),
   });
 
   return (
@@ -146,7 +153,7 @@ export default function CreateProductForm({ productToEdit = {} }) {
           })}
         >
           <option value="">Select Category</option>
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <option id={category.id} value={category.id} key={category.id}>
               {category.name}
             </option>
@@ -164,7 +171,7 @@ export default function CreateProductForm({ productToEdit = {} }) {
           })}
         >
           <option value="">Select Supplier</option>
-          {suppliers.map((supplier) => (
+          {suppliers?.map((supplier) => (
             <option id={supplier.id} value={supplier.id} key={supplier.id}>
               {supplier.name}
             </option>
@@ -187,7 +194,7 @@ export default function CreateProductForm({ productToEdit = {} }) {
         {errors.active && <p>{errors.active.message}</p>}
       </FormRow>
 
-      <input type="hidden" id="id" value={id} {...register("id")} />
+      <input type="hidden" id="id" value={editId} {...register("id")} />
 
       <FormRow>
         <Button disabled={isSubmitting}>
