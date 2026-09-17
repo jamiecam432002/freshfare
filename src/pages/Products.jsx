@@ -1,7 +1,7 @@
 import ProductTable from "../features/products/ProductTable";
 import AddProduct from "../features/products/AddProduct";
 
-export default function Inventory() {
+export default function Products() {
   return (
     <>
       <div className="flex items-center justify-between">

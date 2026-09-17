@@ -9,7 +9,10 @@ import { createProduct, updateProduct } from "../../services/apiProducts";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 
-export default function CreateProductForm({ productToEdit = {} }) {
+export default function CreateProductForm({
+  onCloseModal,
+  productToEdit = {},
+}) {
   const { id: editId, ...editValues } = productToEdit;
   const isEditing = Boolean(editId);
 
@@ -55,6 +58,8 @@ export default function CreateProductForm({ productToEdit = {} }) {
       queryClient.invalidateQueries({
         queryKey: ["products"],
       });
+
+      onCloseModal?.();
     },
   });
 
@@ -67,6 +72,7 @@ export default function CreateProductForm({ productToEdit = {} }) {
       });
 
       reset();
+      onCloseModal?.();
     },
     onError: (err) => toast.error(err.message),
   });
@@ -81,9 +87,13 @@ export default function CreateProductForm({ productToEdit = {} }) {
           {...register("name", {
             required: "Product name is required",
           })}
-          className="rounded-sm border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] shadow-sm"
+          className="rounded-sm border border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
         />
-        {errors.name && <p>{errors.name.message}</p>}
+        {errors.name && (
+          <span className="text-[1.4rem] text-[--color-red-700]">
+            {errors.name.message}
+          </span>
+        )}
       </FormRow>
       <FormRow fieldName="description">
         <input
@@ -93,9 +103,13 @@ export default function CreateProductForm({ productToEdit = {} }) {
           {...register("description", {
             required: "Description is required",
           })}
-          className="rounded-sm border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] shadow-sm"
+          className="rounded-sm border border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
         />
-        {errors.description && <p>{errors.description.message}</p>}
+        {errors.description && (
+          <span className="text-[1.4rem] text-[--color-red-700]">
+            {errors.description.message}
+          </span>
+        )}
       </FormRow>
 
       <FormRow fieldName="quantity">
@@ -111,9 +125,13 @@ export default function CreateProductForm({ productToEdit = {} }) {
               message: "Quantity cannot be negative",
             },
           })}
-          className="rounded-sm border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] shadow-sm"
+          className="rounded-sm border border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
         />
-        {errors.quantity && <p>{errors.quantity.message}</p>}
+        {errors.quantity && (
+          <span className="text-[1.4rem] text-[--color-red-700]">
+            {errors.quantity.message}
+          </span>
+        )}
       </FormRow>
       <FormRow fieldName="sku">
         <input
@@ -123,9 +141,13 @@ export default function CreateProductForm({ productToEdit = {} }) {
           {...register("sku", {
             required: "Product SKU is required",
           })}
-          className="rounded-sm border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] shadow-sm"
+          className="rounded-sm border border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
         />
-        {errors.sku && <p>{errors.sku.message}</p>}
+        {errors.sku && (
+          <span className="text-[1.4rem] text-[--color-red-700]">
+            {errors.sku.message}
+          </span>
+        )}
       </FormRow>
       <FormRow fieldName="price">
         <input
@@ -140,13 +162,18 @@ export default function CreateProductForm({ productToEdit = {} }) {
               message: "Price must be greater than zero",
             },
           })}
-          className="rounded-sm border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] shadow-sm"
+          className="rounded-sm border border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
         />
-        {errors.price && <p>{errors.price.message}</p>}
+        {errors.price && (
+          <span className="text-[1.4rem] text-[--color-red-700]">
+            {errors.price.message}
+          </span>
+        )}
       </FormRow>
       <FormRow fieldName="category_id">
         <select
           id="category_id"
+          className="text-[1.4rem]"
           disabled={isSubmitting}
           {...register("category_id", {
             required: "Please select a category",
@@ -159,12 +186,17 @@ export default function CreateProductForm({ productToEdit = {} }) {
             </option>
           ))}
         </select>
-        {errors.category_id && <p>{errors.category_id.message}</p>}
+        {errors.category_id && (
+          <span className="text-[1.4rem] text-[--color-red-700]">
+            {errors.category_id.message}
+          </span>
+        )}
       </FormRow>
 
       <FormRow fieldName="supplier_id">
         <select
           id="supplier_id"
+          className="text-[1.4rem]"
           disabled={isSubmitting}
           {...register("supplier_id", {
             required: "Please select a supplier",
@@ -177,11 +209,16 @@ export default function CreateProductForm({ productToEdit = {} }) {
             </option>
           ))}
         </select>
-        {errors.supplier_id && <p>{errors.supplier_id.message}</p>}
+        {errors.supplier_id && (
+          <span className="text-[1.4rem] text-[--color-red-700]">
+            {errors.supplier_id.message}
+          </span>
+        )}
       </FormRow>
       <FormRow fieldName="active">
         <select
           id="active"
+          className="text-[1.4rem]"
           disabled={isSubmitting}
           {...register("active", {
             required: "Set the products ACTIVE status",
@@ -191,16 +228,23 @@ export default function CreateProductForm({ productToEdit = {} }) {
           <option value="true">YES</option>
           <option value="false">NO</option>
         </select>
-        {errors.active && <p>{errors.active.message}</p>}
+        {errors.active && (
+          <span className="text-[1.4rem] text-[--color-red-700]">
+            {errors.active.message}
+          </span>
+        )}
       </FormRow>
 
       <input type="hidden" id="id" value={editId} {...register("id")} />
 
-      <FormRow>
-        <Button disabled={isSubmitting}>
+      <div className="flex justify-end gap-5 px-[0] pt-[1.2rem]">
+        <Button type="reset" onClick={() => onCloseModal?.()}>
+          Cancel
+        </Button>
+        <Button variation="primary" disabled={isSubmitting}>
           {isEditing ? "Update Product" : "Create Product"}
         </Button>
-      </FormRow>
+      </div>
     </Form>
   );
 }

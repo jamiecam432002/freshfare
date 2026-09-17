@@ -36,7 +36,7 @@ export default function ProductRow({ product }) {
         <div>{category.name}</div>
         <div>{supplier.name}</div>
 
-        <div>{isActive}</div>
+        <div>{isActive ? 'ACTIVE' : 'INACTIVE'}</div>
         <div className="font-semibold">{formatCurrency(price)}</div>
         <div>{sku}</div>
         <div>

@@ -18,7 +18,7 @@ export default function ProductTable() {
         <div>Category</div>
         <div>Supplier</div>
 
-        <div>Active</div>
+        <div>Status</div>
         <div>Price</div>
         <div>SKU</div>
         <div></div>

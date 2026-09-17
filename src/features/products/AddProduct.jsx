@@ -4,10 +4,12 @@ import CreateProductForm from "./CreateProductForm";
 
 export default function AddProduct() {
   return (
-    <div>
+    <div className="mt-6">
       <Modal>
         <Modal.Open opens="product-form">
-          <Button>Add new product</Button>
+          <Button variation="primary" className="mt-4">
+            Add new product
+          </Button>
         </Modal.Open>
         <Modal.Window name="product-form">
           <CreateProductForm />

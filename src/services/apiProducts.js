@@ -1,10 +1,11 @@
 import supabase from "./supabase";
 
 export async function getProducts() {
-  const { data: products, error } = await supabase
+  let query = supabase
     .from("products")
-    .select("*, suppliers(*), categories(*)");
-
+    .select("*, suppliers(*), categories(*)")
+    .order("quantity", { ascending: false });
+  const { data: products, error } = await query;
   if (error) {
     console.error(error);
     throw new Error("Products could not be loaded");

@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import Inventory from "./pages/Inventory";
+import Products from "./pages/Products";
 import Reports from "./pages/Reports";
 import AppLayout from "./ui/AppLayout";
 import Product from "./pages/Product";
@@ -25,8 +25,8 @@ function App() {
           <Route element={<AppLayout />}>
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="inventory" element={<Inventory />} />
-            <Route path="inventory/:productId" element={<Product />} />
+            <Route path="products" element={<Products />} />
+            <Route path="products/:productId" element={<Product />} />
             <Route path="reports" element={<Reports />} />
           </Route>
         </Routes>
