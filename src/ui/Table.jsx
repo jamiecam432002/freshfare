@@ -18,10 +18,17 @@ function Header({ children }) {
   return (
     <header
       role="row"
-      className="grid grid-cols-[30rem_5rem_10rem_25rem_6rem_5rem_auto_5rem] gap-[2.6rem] border-b border-[--color-grey-100] bg-[--color-grey-50] px-[2.4rem] py-[1.6rem] font-semibold uppercase tracking-[0.4px] text-[--color-grey-600]"
+      className="grid grid-cols-[30rem_5rem_12rem_25rem_6rem_5rem_auto_5rem] gap-[2.6rem] border-b border-[--color-grey-100] bg-[--color-grey-50] px-[2.4rem] py-[1.6rem] font-semibold uppercase tracking-[0.4px] text-[--color-grey-600]"
     >
       {children}
     </header>
+  );
+}
+function Footer({ children }) {
+  return (
+    <div className="flex justify-center bg-[--color-grey-50] px-[1.2rem] py-[1.2rem]">
+      {children}
+    </div>
   );
 }
 /*function Row({ children }) {
@@ -32,7 +39,7 @@ function Header({ children }) {
     </div>
   );
 }*/
-function Body({ data, render }) {
+function Body({ data = [], render }) {
   if (!data.length) return <p>No data to show at the moment</p>;
   return <section className="mx-[0] my-[0.4rem]">{data.map(render)}</section>;
 }
@@ -40,3 +47,4 @@ function Body({ data, render }) {
 Table.Header = Header;
 //Table.Row = Row;
 Table.Body = Body;
+Table.Footer = Footer;

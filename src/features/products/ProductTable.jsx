@@ -1,32 +1,38 @@
-import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../../services/apiProducts";
 import ProductRow from "./ProductRow";
 import Table from "../../ui/Table";
+import Menus from "../../ui/Menus";
+import { useProducts } from "./useProducts";
+import Spinner from "../../ui/Spinner";
+import Pagination from "../../ui/Pagination";
 
 export default function ProductTable() {
-  const { data: products, isLoading } = useQuery({
-    queryKey: ["products"],
-    queryFn: getProducts,
-  });
+  const { products, isLoading, count } = useProducts();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   return (
-    <Table>
-      <Table.Header>
-        <div>Name</div>
-        <div>Qty</div>
-        <div>Category</div>
-        <div>Supplier</div>
+    <Menus>
+      <Table>
+        <Table.Header>
+          <div>Name</div>
+          <div>Qty</div>
+          <div>Category</div>
+          <div>Supplier</div>
 
-        <div>Status</div>
-        <div>Price</div>
-        <div>SKU</div>
-        <div></div>
-      </Table.Header>
-      <Table.Body
-        data={products}
-        render={(product) => <ProductRow product={product} key={product.id} />}
-      />
-    </Table>
+          <div>Status</div>
+          <div>Price</div>
+          <div>SKU</div>
+          <div></div>
+        </Table.Header>
+        <Table.Body
+          data={products}
+          render={(product) => (
+            <ProductRow product={product} key={product.id} />
+          )}
+        />
+      </Table>
+      <Table.Footer>
+        <Pagination count={count} />
+      </Table.Footer>
+    </Menus>
   );
 }

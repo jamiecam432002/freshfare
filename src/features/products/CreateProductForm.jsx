@@ -1,13 +1,13 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FormRow from "../../ui/FormRow";
-import { getCategories } from "../../services/apiCategories";
-import { getSuppliers } from "../../services/apiSuppliers";
 import { createProduct, updateProduct } from "../../services/apiProducts";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import useCategories from "./useCategories";
+import useSuppliers from "./useSuppliers";
 
 export default function CreateProductForm({
   onCloseModal,
@@ -16,14 +16,8 @@ export default function CreateProductForm({
   const { id: editId, ...editValues } = productToEdit;
   const isEditing = Boolean(editId);
 
-  const { data: categories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCategories,
-  });
-  const { data: suppliers } = useQuery({
-    queryKey: ["suppliers"],
-    queryFn: getSuppliers,
-  });
+  const { data: categories } = useCategories();
+  const { data: suppliers } = useSuppliers();
 
   const {
     register,
@@ -140,6 +134,11 @@ export default function CreateProductForm({
           disabled={isSubmitting}
           {...register("sku", {
             required: "Product SKU is required",
+            pattern: {
+              value: /^[A-Za-z]{3}-\d{3}$/,
+              message: "SKU must use the format ABC-123",
+            },
+            setValueAs: (value) => value.trim().toUpperCase(),
           })}
           className="rounded-sm border border-[--color-grey-300] bg-[--color-grey-0] px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
         />
