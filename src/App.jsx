@@ -7,6 +7,10 @@ import Product from "./pages/Product";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import Suppliers from "./pages/Suppliers";
+import Categories from "./pages/Categories";
+import Purchasing from "./pages/Purchasing";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,7 +31,12 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="products" element={<Products />} />
             <Route path="products/:productId" element={<Product />} />
+
+            <Route path="suppliers" element={<Suppliers />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="purchasing" element={<Purchasing />} />
             <Route path="reports" element={<Reports />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
         </Routes>
       </BrowserRouter>

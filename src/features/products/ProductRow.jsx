@@ -5,6 +5,7 @@ import { useDeleteProduct } from "./useDeleteProduct";
 import Modal from "../../ui/Modal";
 import Menus from "../../ui/Menus";
 import ConfirmDelete from "../../ui/ConfirmDelete";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductRow({ product }) {
   const {
@@ -18,6 +19,7 @@ export default function ProductRow({ product }) {
     suppliers: supplier,
   } = product;
   const { isDeleting, deleteProduct } = useDeleteProduct();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -39,7 +41,12 @@ export default function ProductRow({ product }) {
             <Menus.Menu>
               <Menus.Toggle id={id} />
               <Menus.List id={id}>
-                <Menus.Button icon={<HiEye />}>View</Menus.Button>
+                <Menus.Button
+                  onClick={() => navigate(`/products/${id}`)}
+                  icon={<HiEye />}
+                >
+                  View
+                </Menus.Button>
                 <Modal.Open opens="edit">
                   <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
                 </Modal.Open>

@@ -2,8 +2,6 @@ import { PAGE_SIZE } from "../utils/constants";
 import supabase from "./supabase";
 
 export async function getProducts(status, category, supplier, page) {
-  console.log("getProducts is firing again");
-  console.log(status, category, supplier);
   let query = supabase
     .from("products")
     .select("*, suppliers(*), categories(*)", { count: "exact" });
@@ -37,6 +35,20 @@ export async function getProducts(status, category, supplier, page) {
   }
 
   return { data, count };
+}
+
+export async function getProduct(id) {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*, supplier:suppliers(id, name), category:categories(id, name)")
+    .eq("id", id)
+    .single();
+  if (error) {
+    console.error(error);
+    throw new Error("Product not found!");
+  }
+
+  return data;
 }
 
 export async function createProduct(newProduct) {
