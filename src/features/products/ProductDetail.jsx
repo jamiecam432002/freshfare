@@ -1,5 +1,5 @@
 import { useMoveBack } from "../../hooks/useMoveBack";
-import { useProduct } from "./useProduct";
+import { useProduct } from "./hooks/useProduct";
 import Spinner from "../../ui/Spinner";
 import ProductDataBox from "./ProductDataBox";
 

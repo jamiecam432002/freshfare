@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getProducts } from "../../services/apiProducts";
+import { getProducts } from "../../../services/apiProducts";
 import { useSearchParams } from "react-router-dom";
-import { PAGE_SIZE } from "../../utils/constants";
+import { PAGE_SIZE } from "../../../utils/constants";
 
 export function useProducts() {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export function useProducts() {
   const statusFilter = searchParams.get("status") ?? "all";
   const categoryFilter = Number(searchParams.get("category_id")) || "all";
   const supplierFilter = Number(searchParams.get("supplier_id")) || "all";
-  console.log(supplierFilter, categoryFilter, statusFilter);
+  const search = searchParams.get("search") ?? "";
 
   // SORT
 
@@ -24,9 +24,16 @@ export function useProducts() {
     data: { data: products, count } = {},
     error,
   } = useQuery({
-    queryKey: ["products", statusFilter, categoryFilter, supplierFilter, page],
+    queryKey: [
+      "products",
+      statusFilter,
+      categoryFilter,
+      supplierFilter,
+      page,
+      search,
+    ],
     queryFn: () =>
-      getProducts(statusFilter, categoryFilter, supplierFilter, page),
+      getProducts(statusFilter, categoryFilter, supplierFilter, page, search),
   });
 
   // PRE-FETCHING
@@ -40,9 +47,16 @@ export function useProducts() {
         categoryFilter,
         supplierFilter,
         page + 1,
+        search,
       ],
       queryFn: () =>
-        getProducts(statusFilter, categoryFilter, supplierFilter, page + 1),
+        getProducts(
+          statusFilter,
+          categoryFilter,
+          supplierFilter,
+          page + 1,
+          search,
+        ),
     });
   }
 
@@ -53,10 +67,17 @@ export function useProducts() {
         statusFilter,
         categoryFilter,
         supplierFilter,
+        search,
         page - 1,
       ],
       queryFn: () =>
-        getProducts(statusFilter, categoryFilter, supplierFilter, page - 1),
+        getProducts(
+          statusFilter,
+          categoryFilter,
+          supplierFilter,
+          search,
+          page - 1,
+        ),
     });
   }
 

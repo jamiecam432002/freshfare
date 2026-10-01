@@ -8,7 +8,6 @@ export default function Pagination({ count }) {
     ? 1
     : Number(searchParams.get("page"));
   const pageCount = Math.ceil(count / PAGE_SIZE);
-  console.log(pageCount, currentPage);
 
   function nextPage() {
     const next = currentPage === pageCount ? currentPage : currentPage + 1;

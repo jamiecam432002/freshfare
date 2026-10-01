@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getProduct } from "../../services/apiProducts";
+import { getProduct } from "../../../services/apiProducts";
 
 export function useProduct() {
   const { productId } = useParams();

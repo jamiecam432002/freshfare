@@ -1,7 +1,7 @@
 import ProductRow from "./ProductRow";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
-import { useProducts } from "./useProducts";
+import { useProducts } from "./hooks/useProducts";
 import Spinner from "../../ui/Spinner";
 import Pagination from "../../ui/Pagination";
 
@@ -13,15 +13,14 @@ export default function ProductTable() {
     <Menus>
       <Table>
         <Table.Header>
-          <div>Name</div>
-          <div>Qty</div>
-          <div>Category</div>
-          <div>Supplier</div>
-
-          <div>Status</div>
-          <div>Price</div>
+          <div>Product</div>
           <div>SKU</div>
-          <div></div>
+          <div>Category</div>
+          <div>Price</div>
+          <div>Quantity</div>
+          <div>Supplier</div>
+          <div>Status</div>
+          <div>Actions</div>
         </Table.Header>
         <Table.Body
           data={products}

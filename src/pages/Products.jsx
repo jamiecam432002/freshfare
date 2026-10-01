@@ -6,14 +6,17 @@ export default function Products() {
   return (
     <>
       <div className="flex items-center justify-between">
-        <h1 className="text-5xl font-semibold">All Products</h1>
+        <div>
+          <h1 className="text-6xl font-bold">Products</h1>
+          <h2>Manage your inventory and product details.</h2>
+        </div>
+        <AddProduct />
+      </div>
+      <div>
         <div className="flex items-center gap-6">
           <ProductTableOperations />
         </div>
-      </div>
-      <div>
         <ProductTable />
-        <AddProduct />
       </div>
     </>
   );

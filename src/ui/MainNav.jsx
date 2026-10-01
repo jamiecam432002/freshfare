@@ -1,9 +1,13 @@
 import { NavLink } from "react-router-dom";
 import {
   HiOutlineHome,
-  HiOutlineCalendarDays,
-  HiOutlineHomeModern,
+  HiOutlineChartBar,
+  HiOutlineCog8Tooth,
+  HiOutlineSquares2X2,
+  HiOutlineUser,
+  HiOutlineWallet,
 } from "react-icons/hi2";
+import { Package } from "lucide-react";
 
 export default function MainNav() {
   return (
@@ -23,7 +27,7 @@ export default function MainNav() {
             to="/products"
             className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
           >
-            <HiOutlineCalendarDays className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <Package className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
             <span className="text-[1.6rem]">Products</span>
           </NavLink>
         </li>
@@ -32,7 +36,7 @@ export default function MainNav() {
             to="/suppliers"
             className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
           >
-            <HiOutlineCalendarDays className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineUser className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
             <span className="text-[1.6rem]">Suppliers</span>
           </NavLink>
         </li>
@@ -41,7 +45,7 @@ export default function MainNav() {
             to="/categories"
             className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
           >
-            <HiOutlineCalendarDays className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineSquares2X2 className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
             <span className="text-[1.6rem]">Categories</span>
           </NavLink>
         </li>
@@ -50,7 +54,7 @@ export default function MainNav() {
             to="/purchasing"
             className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
           >
-            <HiOutlineCalendarDays className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineWallet className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
             <span className="text-[1.6rem]">Purchasing</span>
           </NavLink>
         </li>
@@ -59,7 +63,7 @@ export default function MainNav() {
             to="/reports"
             className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
           >
-            <HiOutlineHomeModern className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineChartBar className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
             <span className="text-[1.6rem]">Reports</span>
           </NavLink>
         </li>
@@ -68,7 +72,7 @@ export default function MainNav() {
             to="/settings"
             className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
           >
-            <HiOutlineCalendarDays className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineCog8Tooth className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
             <span className="text-[1.6rem]">Settings</span>
           </NavLink>
         </li>

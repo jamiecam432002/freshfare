@@ -1,18 +1,19 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+
 
 :root {
   --color-brand-50: #eef2ff;
   --color-brand-100: #e0d7ff;
   --color-brand-200: #c7d2fe;
-  --color-brand-500: #6366f1;
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
+  --color-brand-500: #2c6c47;
+  --color-brand-600: #145c32;
+  --color-brand-700: #12532d;
   --color-brand-800: #3730a3;
   --color-brand-900: #312e81;
 

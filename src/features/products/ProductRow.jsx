@@ -1,7 +1,7 @@
 import { formatCurrency } from "../../utils/helpers";
 import CreateProductForm from "./CreateProductForm";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
-import { useDeleteProduct } from "./useDeleteProduct";
+import { useDeleteProduct } from "./hooks/useDeleteProduct";
 import Modal from "../../ui/Modal";
 import Menus from "../../ui/Menus";
 import ConfirmDelete from "../../ui/ConfirmDelete";
@@ -25,17 +25,16 @@ export default function ProductRow({ product }) {
     <>
       <div
         role="row"
-        className="grid grid-cols-[30rem_5rem_12rem_25rem_6rem_5rem_auto_5rem] items-center gap-[2.6rem] border-b border-[--color-grey-100] px-[2.4rem] py-[1.2rem]"
+        className="grid grid-cols-[26rem_7rem_12rem_7rem_7rem_auto_10rem_5rem] items-center gap-[2.6rem] border-b border-[--color-grey-100] px-[2.4rem] py-[1.2rem]"
       >
         <div className="font-semibold text-[--color-grey-600]">{name}</div>
-
-        <div>{quantity}</div>
-        <div>{category.name}</div>
-        <div>{supplier.name}</div>
-
-        <div>{active ? "ACTIVE" : "INACTIVE"}</div>
-        <div className="font-semibold">{formatCurrency(price)}</div>
         <div>{sku}</div>
+        <div>{category.name}</div>
+        <div className="font-semibold">{formatCurrency(price)}</div>
+        <div>{quantity}</div>
+        <div>{supplier.name}</div>
+        <div>{active ? "ACTIVE" : "INACTIVE"}</div>
+
         <div>
           <Modal>
             <Menus.Menu>

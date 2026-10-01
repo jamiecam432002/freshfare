@@ -18,7 +18,7 @@ function Header({ children }) {
   return (
     <header
       role="row"
-      className="grid grid-cols-[30rem_5rem_12rem_25rem_6rem_5rem_auto_5rem] gap-[2.6rem] border-b border-[--color-grey-100] bg-[--color-grey-50] px-[2.4rem] py-[1.6rem] font-semibold uppercase tracking-[0.4px] text-[--color-grey-600]"
+      className="grid grid-cols-[26rem_7rem_12rem_7rem_7rem_auto_10rem_5rem] gap-[2.6rem] border-b border-[--color-grey-100] bg-[--color-grey-50] px-[2.4rem] py-[1.2rem] font-semibold text-[--color-grey-600]"
     >
       {children}
     </header>
