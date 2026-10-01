@@ -16,63 +16,63 @@ export default function MainNav() {
         <li>
           <NavLink
             to="/dashboard"
-            className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
+            className="group text-grey-600 flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium"
           >
-            <HiOutlineHome className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineHome className="text-grey-400 group-[.active]:text-brand-600 h-[2.4rem] w-[2.4rem]" />
             <span className="text-[1.6rem]">Home</span>
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/products"
-            className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
+            className="group text-grey-600 flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium"
           >
-            <Package className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <Package className="text-grey-400 group-[.active]:text-brand-600 h-[2.4rem] w-[2.4rem]" />
             <span className="text-[1.6rem]">Products</span>
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/suppliers"
-            className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
+            className="group text-grey-600 flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium"
           >
-            <HiOutlineUser className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineUser className="text-grey-400 group-[.active]:text-brand-600 h-[2.4rem] w-[2.4rem]" />
             <span className="text-[1.6rem]">Suppliers</span>
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/categories"
-            className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
+            className="group text-grey-600 flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium"
           >
-            <HiOutlineSquares2X2 className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineSquares2X2 className="text-grey-400 group-[.active]:text-brand-600 h-[2.4rem] w-[2.4rem]" />
             <span className="text-[1.6rem]">Categories</span>
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/purchasing"
-            className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
+            className="group text-grey-600 flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium"
           >
-            <HiOutlineWallet className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineWallet className="text-grey-400 group-[.active]:text-brand-600 h-[2.4rem] w-[2.4rem]" />
             <span className="text-[1.6rem]">Purchasing</span>
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/reports"
-            className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
+            className="group text-grey-600 flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium"
           >
-            <HiOutlineChartBar className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineChartBar className="text-grey-400 group-[.active]:text-brand-600 h-[2.4rem] w-[2.4rem]" />
             <span className="text-[1.6rem]">Reports</span>
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/settings"
-            className="group flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium text-[#4b5563]"
+            className="group text-grey-600 flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium"
           >
-            <HiOutlineCog8Tooth className="h-[2.4rem] w-[2.4rem] text-[#9ca3af] group-[.active]:text-[--color-brand-600]" />
+            <HiOutlineCog8Tooth className="text-grey-400 group-[.active]:text-brand-600 h-[2.4rem] w-[2.4rem]" />
             <span className="text-[1.6rem]">Settings</span>
           </NavLink>
         </li>

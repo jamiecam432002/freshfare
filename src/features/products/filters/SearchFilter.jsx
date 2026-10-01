@@ -28,13 +28,13 @@ export default function SearchFilter() {
 
   return (
     <div className="relative">
-      <Search className="absolute left-3 top-1/2 size-8 w-[2.4rem] -translate-y-1/2 text-[--color-grey-500]" />
+      <Search className="text-grey-500 absolute top-1/2 left-3 size-8 w-[2.4rem] -translate-y-1/2" />
       <input
         type="search"
         placeholder="Search products..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="h-16 w-full rounded-md border border-[--color-grey-200] pl-[4rem] pr-3 text-[1.6rem]"
+        className="border-grey-200 h-16 w-full rounded-md border pr-3 pl-16 text-[1.6rem]"
       />
     </div>
   );

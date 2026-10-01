@@ -13,11 +13,11 @@ export default function ProductDetail() {
     <>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-10">
-          <h1 className="text-[3rem] font-semibold leading-5">Product #{id}</h1>
+          <h1 className="text-[3rem] leading-5 font-semibold">Product #{id}</h1>
         </div>
         <button
           onClick={() => moveBack()}
-          className="rounded-sm border-0 bg-none text-center font-medium text-[--color-brand-600] transition-all hover:text-[--color-brand-700] active:text-[--color-brand-700]"
+          className="text-brand-600 hover:text-brand-700 active:text-brand-700 rounded-sm border-0 bg-none text-center font-medium transition-all"
         >
           &larr; Back
         </button>

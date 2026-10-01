@@ -25,9 +25,9 @@ export default function ProductRow({ product }) {
     <>
       <div
         role="row"
-        className="grid grid-cols-[26rem_7rem_12rem_7rem_7rem_auto_10rem_5rem] items-center gap-[2.6rem] border-b border-[--color-grey-100] px-[2.4rem] py-[1.2rem]"
+        className="border-grey-100 grid grid-cols-[26rem_7rem_12rem_7rem_7rem_auto_10rem_5rem] items-center gap-[2.6rem] border-b px-[2.4rem] py-[1.2rem]"
       >
-        <div className="font-semibold text-[--color-grey-600]">{name}</div>
+        <div className="text-grey-600 font-semibold">{name}</div>
         <div>{sku}</div>
         <div>{category.name}</div>
         <div className="font-semibold">{formatCurrency(price)}</div>

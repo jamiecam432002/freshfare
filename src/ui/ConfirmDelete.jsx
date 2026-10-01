@@ -7,8 +7,8 @@ export default function ConfirmDelete({
   onCloseModal,
 }) {
   return (
-    <div className="flex w-[40rem] flex-col gap-5 [&_div]:flex [&_div]:justify-end [&_div]:gap-5 [&_p]:mb-5 [&_p]:text-[--color-gray-500]">
-      <h3 className="text-[2rem] font-medium leading-[1.4]">
+    <div className="flex w-[40rem] flex-col gap-5 [&_div]:flex [&_div]:justify-end [&_div]:gap-5 [&_p]:mb-5 [&_p]:text-gray-500">
+      <h3 className="text-[2rem] leading-[1.4] font-medium">
         Delete {resourceName}
       </h3>
       <p>

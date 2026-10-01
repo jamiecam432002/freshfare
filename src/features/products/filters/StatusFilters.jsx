@@ -46,7 +46,7 @@ export default function StatusFilters() {
       value={status}
       onValueChange={(value) => handleStatusChange(value)}
     >
-      <SelectTrigger className="w-[180px] rounded-sm border border-[--color-grey-100] bg-[--color-grey-0] px-4 py-8 text-[1.6rem] font-semibold shadow-sm [&_svg]:h-[2rem] [&_svg]:w-[2rem]">
+      <SelectTrigger className="border-grey-100 bg-grey-0 w-[180px] rounded-sm border px-4 py-8 text-[1.6rem] font-semibold shadow-sm [&_svg]:h-[2rem] [&_svg]:w-[2rem]">
         <HiOutlineCheckCircle
           style={{ height: "2.4rem", width: "2.4rem", marginRight: "1rem" }}
         />

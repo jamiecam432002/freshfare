@@ -45,7 +45,7 @@ export default function SupplierFilters() {
       value={supplierId}
       onValueChange={(value) => handleSupplierChange(value)}
     >
-      <SelectTrigger className="w-[330px] rounded-sm border border-[--color-grey-100] bg-[--color-grey-0] px-4 py-8 text-[1.6rem] font-semibold shadow-sm [&_svg]:h-[2rem] [&_svg]:w-[2rem]">
+      <SelectTrigger className="border-grey-100 bg-grey-0 w-[330px] rounded-sm border px-4 py-8 text-[1.6rem] font-semibold shadow-sm [&_svg]:h-[2rem] [&_svg]:w-[2rem]">
         <HiOutlineUser
           style={{ height: "2.4rem", width: "2.4rem", marginRight: "1rem" }}
         />
