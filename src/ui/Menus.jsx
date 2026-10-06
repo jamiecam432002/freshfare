@@ -62,7 +62,7 @@ function ListWindow({ children, position }) {
     <ul
       ref={ref}
       style={{ right: `${x}px`, top: `${y}px` }}
-      className={`fixed rounded-[--border-radius-md] bg-[--color-grey-0] shadow-md`}
+      className={`bg-grey-0 fixed rounded-[--border-radius-md] shadow-md`}
     >
       {children}
     </ul>
@@ -79,7 +79,7 @@ function Button({ children, icon, onClick }) {
     <li>
       <button
         onClick={handleClick}
-        className="flex w-full items-center gap-[1.6rem] border-0 bg-none px-[2.4rem] py-[1.2rem] text-left text-[1.4rem] transition-all duration-200 hover:bg-[--color-grey-50] [&_svg]:h-[1.6rem] [&_svg]:w-[1.6rem] [&_svg]:text-[#9ca3af] [&_svg]:transition-all [&_svg]:duration-300"
+        className="hover:bg-grey-50] flex w-full items-center gap-[1.6rem] border-0 bg-none px-[2.4rem] py-[1.2rem] text-left text-[1.4rem] transition-all duration-200 [&_svg]:h-[1.6rem] [&_svg]:w-[1.6rem] [&_svg]:text-[#9ca3af] [&_svg]:transition-all [&_svg]:duration-300"
       >
         {icon}
         <span>{children}</span>

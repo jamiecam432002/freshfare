@@ -81,7 +81,7 @@ export default function CreateProductForm({
           {...register("name", {
             required: "Product name is required",
           })}
-          className="border-grey-300 bg-grey-0 rounded-sm border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
+          className="border-grey-300 bg-grey-0 rounded-[5px] border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
         />
         {errors.name && (
           <span className="text-[1.4rem] text-red-700">
@@ -97,7 +97,7 @@ export default function CreateProductForm({
           {...register("description", {
             required: "Description is required",
           })}
-          className="border-grey-300 bg-grey-0 rounded-sm border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
+          className="border-grey-300 bg-grey-0 rounded-[5px] border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
         />
         {errors.description && (
           <span className="text-[1.4rem] text-red-700">
@@ -119,7 +119,7 @@ export default function CreateProductForm({
               message: "Quantity cannot be negative",
             },
           })}
-          className="border-grey-300 bg-grey-0 rounded-sm border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
+          className="border-grey-300 bg-grey-0 rounded-[5px] border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
         />
         {errors.quantity && (
           <span className="text-[1.4rem] text-red-700">
@@ -140,7 +140,7 @@ export default function CreateProductForm({
             },
             setValueAs: (value) => value.trim().toUpperCase(),
           })}
-          className="border-grey-300 bg-grey-0 rounded-sm border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
+          className="border-grey-300 bg-grey-0 rounded-[5px] border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
         />
         {errors.sku && (
           <span className="text-[1.4rem] text-red-700">
@@ -161,7 +161,7 @@ export default function CreateProductForm({
               message: "Price must be greater than zero",
             },
           })}
-          className="border-grey-300 bg-grey-0 rounded-sm border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-sm"
+          className="border-grey-300 bg-grey-0 rounded-[5px] border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
         />
         {errors.price && (
           <span className="text-[1.4rem] text-red-700">
