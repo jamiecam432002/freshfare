@@ -13,7 +13,7 @@ export default function ProductDetail() {
     <>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-10">
-          <h1 className="text-[3rem] leading-5 font-semibold">Product #{id}</h1>
+          <h1>Product #{id}</h1>
         </div>
         <button
           onClick={() => moveBack()}

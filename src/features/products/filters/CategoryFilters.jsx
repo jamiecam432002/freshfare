@@ -46,7 +46,7 @@ export default function CategoryFilters() {
       value={categoryId}
       onValueChange={(value) => handleCategoryChange(value)}
     >
-      <SelectTrigger className="border-grey-200 bg-grey-0] w-[230px] rounded-md border px-4 py-8 text-[1.6rem] font-semibold shadow-sm [&_svg]:h-[2rem] [&_svg]:w-[2rem]">
+      <SelectTrigger className="border-grey-200 bg-grey-0 w-[230px] rounded-md border px-4 py-8 text-[1.6rem] font-semibold shadow-sm [&_svg]:h-[2rem] [&_svg]:w-[2rem]">
         <HiOutlineSquares2X2
           style={{ height: "2.4rem", width: "2.4rem", marginRight: "1rem" }}
         />

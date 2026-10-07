@@ -19,7 +19,7 @@ export default function MainNav() {
             className="group text-grey-600 flex items-center gap-[1.2rem] px-[2.4rem] py-[1.2rem] text-2xl font-medium"
           >
             <HiOutlineHome className="text-grey-400 group-[.active]:text-brand-600 h-[2.4rem] w-[2.4rem]" />
-            <span className="text-[1.6rem]">Home</span>
+            <span className="text-[1.6rem]">Dashboard</span>
           </NavLink>
         </li>
         <li>

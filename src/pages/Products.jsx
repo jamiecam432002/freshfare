@@ -7,7 +7,7 @@ export default function Products() {
     <>
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-6xl font-bold">Products</h1>
+          <h1>Products</h1>
           <h2>Manage your inventory and product details.</h2>
         </div>
         <AddProduct />

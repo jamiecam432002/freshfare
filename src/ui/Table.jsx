@@ -18,7 +18,7 @@ function Header({ children }) {
   return (
     <header
       role="row"
-      className="border-grey-100 bg-grey-50 text-grey-600 grid grid-cols-[26rem_7rem_12rem_7rem_7rem_auto_10rem_5rem] gap-[2.6rem] border-b px-[2.4rem] py-[1.2rem] font-semibold"
+      className="border-grey-100 bg-grey-50 text-grey-600 grid grid-cols-[26rem_7rem_12rem_7rem_7rem_auto_10rem_5rem] gap-[2.6rem] border-b px-[2.4rem] py-[1.6rem] font-semibold"
     >
       {children}
     </header>
@@ -40,7 +40,12 @@ function Footer({ children }) {
   );
 }*/
 function Body({ data = [], render }) {
-  if (!data.length) return <p>No data to show at the moment</p>;
+  if (!data.length)
+    return (
+      <p className="m-[2.4rem] text-center text-[1.6rem] font-medium">
+        No data to show at the moment
+      </p>
+    );
   return <section className="mx-0 my-[0.4rem]">{data.map(render)}</section>;
 }
 

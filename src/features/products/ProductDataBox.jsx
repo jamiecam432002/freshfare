@@ -12,7 +12,7 @@ export default function ProductDataBox({ product }) {
   } = product;
   return (
     <section className="bg-grey-0 overflow-hidden rounded-md border">
-      <header className="bg-brand-500 flex items-center justify-between px-[4rem] py-[2rem] text-[1.8rem] font-medium text-[#e0e7ff] [&_svg]:h-[3.2rem] [&_svg]:w-[3.2rem]">
+      <header className="bg-brand-500 flex items-center justify-between px-[4rem] py-[2rem] text-[1.8rem] font-medium text-indigo-100 [&_svg]:h-[3.2rem] [&_svg]:w-[3.2rem]">
         <div>
           <HiOutlineHomeModern />
           <p>{name}</p>

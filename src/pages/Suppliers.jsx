@@ -1,3 +1,7 @@
 export default function Suppliers() {
-  return <div>Suppliers</div>;
+  return (
+    <div>
+      <h1>Suppliers</h1>
+    </div>
+  );
 }

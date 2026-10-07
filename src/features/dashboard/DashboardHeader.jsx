@@ -1,7 +1,8 @@
 export default function DashboardHeader() {
   return (
-    <h1 className="text-5xl font-semibold">
-      Here's what's happening at FreshFare
-    </h1>
+    <div>
+      <h1>Dashboard</h1>
+      <h2>Here's whats happening with your inventory.</h2>
+    </div>
   );
 }
