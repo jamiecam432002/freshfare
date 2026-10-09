@@ -1,9 +1,9 @@
-import CategoryChart from "../features/dashboard/CategoryChart";
-import DashboardHeader from "../features/dashboard/DashboardHeader";
-import DashboardStats from "../features/dashboard/DashboardStats";
-import InventoryChart from "../features/dashboard/InventoryChart";
-import LowStockList from "../features/dashboard/LowStockList";
-import StockChart from "../features/dashboard/StockChart";
+import CategoryChart from "../features/dashboard/components/CategoryChart";
+import DashboardHeader from "../features/dashboard/components/DashboardHeader";
+import DashboardStats from "../features/dashboard/components/DashboardStats";
+import InventoryChart from "../features/dashboard/components/InventoryChart";
+import LowStockList from "../features/dashboard/components/LowStockList";
+import StockChart from "../features/dashboard/components/StockChart";
 
 export default function Dashboard() {
   return (
@@ -11,7 +11,7 @@ export default function Dashboard() {
       <DashboardHeader />
       <DashboardStats />
 
-      <div className="grid gap-6 xl:grid-cols-2">
+      <div className="grid grid-cols-[2fr_1fr] gap-6">
         <InventoryChart />
         <CategoryChart />
       </div>

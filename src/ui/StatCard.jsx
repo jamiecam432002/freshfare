@@ -19,7 +19,6 @@ export default function StatCard({
   variant,
 }) {
   const styles = variants[variant];
-  console.log(styles);
   return (
     <Card>
       <CardContent className="flex items-start gap-4 pt-2 pr-4 pb-2 pl-4">
