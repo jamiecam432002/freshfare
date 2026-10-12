@@ -1,9 +1,10 @@
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { useCategorySummary } from "../hooks/useCategorySummary";
-import Spinner from "@/ui/Spinner";
 import { Pie, PieChart, ResponsiveContainer, Sector, Tooltip } from "recharts";
 import { useMemo } from "react";
+
 import { CHART_COLORS } from "@/utils/constants";
+import { useCategorySummary } from "../hooks/useCategorySummary";
+import Spinner from "@/ui/Spinner";
 
 function CategoryTooltip({ active, payload }) {
   if (!active || !payload?.length) return null;
@@ -57,6 +58,7 @@ function CategorySector(props) {
 
 export default function CategoryChart() {
   const { data = [], isPending } = useCategorySummary();
+  console.log(data);
 
   const chartData = useMemo(() => {
     const categories = data ?? [];

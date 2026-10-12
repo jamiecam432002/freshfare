@@ -5,7 +5,6 @@ export async function getProducts(status, category, supplier, page, search) {
   let query = supabase
     .from("products")
     .select("*, suppliers(*), categories(*)", { count: "exact" });
-  //.order("quantity", { ascending: false });
 
   // SEARCH
   if (search) {

@@ -4,6 +4,8 @@ import { LuBadgeDollarSign } from "react-icons/lu";
 import { LuLeaf } from "react-icons/lu";
 import { IoAlertOutline } from "react-icons/io5";
 import { IoLogoStackoverflow } from "react-icons/io5";
+import { useDashboardStats } from "../hooks/useDashboardStats";
+import { formatCurrency } from "@/utils/helpers";
 
 const container = {
   hidden: {},
@@ -26,6 +28,42 @@ const card = {
 };
 
 export default function DashboardStats() {
+  const { data: stats = {}, isPending, isError } = useDashboardStats();
+
+  const activePercentage = stats.totalProducts
+    ? ((stats.activeProducts / stats.totalProducts) * 100).toFixed(1)
+    : 0;
+  const cards = [
+    {
+      title: "Total Products",
+      value: stats.totalProducts,
+      description: "Products in your catalog",
+      icon: IoLogoStackoverflow,
+      variant: "success",
+    },
+    {
+      title: "Active Products",
+      value: stats.activeProducts,
+      description: `${activePercentage}% of all products`,
+      icon: LuLeaf,
+      variant: "success",
+    },
+    {
+      title: "Out of Stock",
+      value: stats.outOfStock,
+      description: "Registered suppliers",
+      icon: IoAlertOutline,
+      variant: "danger",
+    },
+    {
+      title: "Investory Value",
+      value: formatCurrency(stats.inventoryValue),
+      description: "Products needing attention",
+      icon: LuBadgeDollarSign,
+      variant: "success",
+    },
+  ];
+
   return (
     <motion.div
       className="grid grid-cols-4 gap-6"
@@ -33,45 +71,11 @@ export default function DashboardStats() {
       initial="hidden"
       animate="show"
     >
-      <motion.div variants={card}>
-        <StatCard
-          title="Total Products"
-          value="147"
-          comparison="+6% vs last 30 days"
-          icon={IoLogoStackoverflow}
-          variant="success"
-        />
-      </motion.div>
-
-      <motion.div variants={card}>
-        <StatCard
-          title="Active Products"
-          value="132"
-          comparison="+4% vs last 30 days"
-          icon={LuLeaf}
-          variant="success"
-        />
-      </motion.div>
-
-      <motion.div variants={card}>
-        <StatCard
-          title="Out of Stock"
-          value="8"
-          comparison="+2 vs last 30 days"
-          icon={IoAlertOutline}
-          variant="danger"
-        />
-      </motion.div>
-
-      <motion.div variants={card}>
-        <StatCard
-          title="Inventory Value"
-          value="$48,290"
-          comparison="+8% vs last 30 days"
-          icon={LuBadgeDollarSign}
-          variant="success"
-        />
-      </motion.div>
+      {cards.map((statCard) => (
+        <motion.div variants={card}>
+          <StatCard key={statCard.title} {...statCard} />
+        </motion.div>
+      ))}
     </motion.div>
   );
 }

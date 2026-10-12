@@ -11,7 +11,7 @@ export default function ProductTable() {
   if (isLoading) return <Spinner />;
   return (
     <Menus>
-      <Table>
+      <Table columns="26rem 7rem 12rem 7rem 7rem auto 10rem 5rem">
         <Table.Header>
           <div>Product</div>
           <div>SKU</div>
@@ -28,10 +28,10 @@ export default function ProductTable() {
             <ProductRow product={product} key={product.id} />
           )}
         />
+        <Table.Footer>
+          <Pagination count={count} />
+        </Table.Footer>
       </Table>
-      <Table.Footer>
-        <Pagination count={count} />
-      </Table.Footer>
     </Menus>
   );
 }

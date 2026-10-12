@@ -6,6 +6,7 @@ import Modal from "../../ui/Modal";
 import Menus from "../../ui/Menus";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useNavigate } from "react-router-dom";
+import Table from "@/ui/Table";
 
 export default function ProductRow({ product }) {
   const {
@@ -23,10 +24,7 @@ export default function ProductRow({ product }) {
 
   return (
     <>
-      <div
-        role="row"
-        className="border-grey-100 grid grid-cols-[26rem_7rem_12rem_7rem_7rem_auto_10rem_5rem] items-center gap-[2.6rem] border-b px-[2.4rem] py-[1.2rem]"
-      >
+      <Table.Row>
         <div className="text-grey-600 font-semibold">{name}</div>
         <div>{sku}</div>
         <div>{category.name}</div>
@@ -67,7 +65,7 @@ export default function ProductRow({ product }) {
             </Modal.Window>
           </Modal>
         </div>
-      </div>
+      </Table.Row>
     </>
   );
 }

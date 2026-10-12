@@ -1,10 +1,10 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 const TableContext = createContext();
 
-export default function Table({ children }) {
+export default function Table({ children, columns, variation }) {
   return (
-    <TableContext.Provider>
+    <TableContext.Provider value={{ columns, variation }}>
       <div
         className="border-grey-200 bg-grey-0 overflow-hidden rounded-lg border border-solid text-[1.4rem]"
         role="table"
@@ -15,15 +15,59 @@ export default function Table({ children }) {
   );
 }
 function Header({ children }) {
+  const { columns, variation } = useContext(TableContext);
+  const padding =
+    variation === "condensed"
+      ? {
+          paddingLeft: "1.5rem",
+          paddingRight: "1.5rem",
+          paddingTop: "1rem",
+          paddingBottom: "1rem",
+        }
+      : {
+          paddingLeft: "2.4rem",
+          paddingRight: "2.4rem",
+          paddingTop: "1.6rem",
+          paddingBottom: "1.6rem",
+        };
   return (
     <header
       role="row"
-      className="border-grey-100 bg-grey-50 text-grey-600 grid grid-cols-[26rem_7rem_12rem_7rem_7rem_auto_10rem_5rem] gap-[2.6rem] border-b px-[2.4rem] py-[1.6rem] font-semibold"
+      style={{ gridTemplateColumns: columns, ...padding }}
+      className="border-grey-100 bg-grey-50 text-grey-600 grid gap-[2.6rem] border-b font-semibold"
     >
       {children}
     </header>
   );
 }
+
+function Row({ children }) {
+  const { columns, variation } = useContext(TableContext);
+  const padding =
+    variation === "condensed"
+      ? {
+          paddingLeft: "1.5rem",
+          paddingRight: "1.5rem",
+          paddingTop: ".75rem",
+          paddingBottom: "0.75rem",
+        }
+      : {
+          paddingLeft: "2.4rem",
+          paddingRight: "2.4rem",
+          paddingTop: "1.2rem",
+          paddingBottom: "1.2rem",
+        };
+  return (
+    <div
+      role="row"
+      style={{ gridTemplateColumns: columns, ...padding }}
+      className="border-grey-100 grid items-center gap-[2.6rem] border-b"
+    >
+      {children}
+    </div>
+  );
+}
+
 function Footer({ children }) {
   return (
     <div className="bg-grey-50 flex justify-center px-[1.2rem] py-[1.2rem]">
@@ -31,14 +75,7 @@ function Footer({ children }) {
     </div>
   );
 }
-/*function Row({ children }) {
-  //const { columns } = useContext(TableContext);
-  return (
-    <div className="border-b border-[--color-grey-100]" role="row">
-      {children}
-    </div>
-  );
-}*/
+
 function Body({ data = [], render }) {
   if (!data.length)
     return (
@@ -50,6 +87,6 @@ function Body({ data = [], render }) {
 }
 
 Table.Header = Header;
-//Table.Row = Row;
+Table.Row = Row;
 Table.Body = Body;
 Table.Footer = Footer;

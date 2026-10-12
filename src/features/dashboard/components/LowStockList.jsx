@@ -1,4 +1,5 @@
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import LowStockTable from "./LowStockTable";
 
 export default function LowStockList() {
   return (
@@ -12,7 +13,9 @@ export default function LowStockList() {
             Products that are at or below reorder point.
           </p>
         </CardHeader>
-        <CardContent></CardContent>
+        <CardContent>
+          <LowStockTable />
+        </CardContent>
       </Card>
     </div>
   );

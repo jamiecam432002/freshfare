@@ -40,7 +40,7 @@ export default function StockChart() {
           Current stock quantity by category.
         </p>
       </CardHeader>
-      <CardContent className="h-80">
+      <CardContent className="h-100">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={chartData}
@@ -59,9 +59,14 @@ export default function StockChart() {
 
             <XAxis
               dataKey="category_name"
+              interval={0}
+              angle={-35}
+              textAnchor="end"
+              height={80}
+              margin={10}
               axisLine={false}
               tickLine={false}
-              tick={{ fill: "#68756d", fontSize: 12 }}
+              tick={{ fill: "#374151", fontSize: 11 }}
             />
 
             <YAxis

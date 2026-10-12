@@ -6,6 +6,8 @@ export default function Button({ children, onClick, variation, type }) {
     btnStyles = `absolute right-[1.9rem] top-[1.2rem] translate-x-[0.8rem] rounded-md border-0 bg-transparent p-[0.4rem] transition-all duration-200 hover:bg-grey-100 [&_svg]:size-[2.4rem] [&_svg]:text-grey-500`;
   else if (variation === "danger")
     btnStyles = `px-[1.6rem] py-[1.2rem] rounded-md border-0 bg-red-700 text-red-100 text-[1.4rem] shadow-sm hover:bg-red-800`;
+  else if (variation === "condensed")
+    btnStyles = `px-[1.6rem] py-[0.75rem] rounded-md border-0 bg-brand-600 text-brand-50 text-[1.1.5rem] shadow-sm hover:bg-brand-700`;
   else
     btnStyles = `flex px-[1.6rem] py-[1.2rem] rounded-md border-1 border-grey-300 bg-grey-0 px-[2.4rem] py-[1.2rem] text-[1.4rem] text-grey-600 hover:bg-grey-50`;
   return (
