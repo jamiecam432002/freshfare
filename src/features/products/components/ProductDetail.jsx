@@ -1,6 +1,6 @@
-import { useMoveBack } from "../../hooks/useMoveBack";
-import { useProduct } from "./hooks/useProduct";
-import Spinner from "../../ui/Spinner";
+import { useMoveBack } from "../../../hooks/useMoveBack";
+import { useProduct } from "../hooks/useProduct";
+import Spinner from "../../../ui/Spinner";
 import ProductDataBox from "./ProductDataBox";
 
 export default function ProductDetail() {

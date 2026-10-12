@@ -1,10 +1,10 @@
-import { formatCurrency } from "../../utils/helpers";
+import { formatCurrency } from "../../../utils/helpers";
 import CreateProductForm from "./CreateProductForm";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
-import { useDeleteProduct } from "./hooks/useDeleteProduct";
-import Modal from "../../ui/Modal";
-import Menus from "../../ui/Menus";
-import ConfirmDelete from "../../ui/ConfirmDelete";
+import { useDeleteProduct } from "../hooks/useDeleteProduct";
+import Modal from "../../../ui/Modal";
+import Menus from "../../../ui/Menus";
+import ConfirmDelete from "../../../ui/ConfirmDelete";
 import { useNavigate } from "react-router-dom";
 import Table from "@/ui/Table";
 

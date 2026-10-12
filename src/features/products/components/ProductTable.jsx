@@ -1,9 +1,9 @@
 import ProductRow from "./ProductRow";
-import Table from "../../ui/Table";
-import Menus from "../../ui/Menus";
-import { useProducts } from "./hooks/useProducts";
-import Spinner from "../../ui/Spinner";
-import Pagination from "../../ui/Pagination";
+import Table from "../../../ui/Table";
+import Menus from "../../../ui/Menus";
+import { useProducts } from "../hooks/useProducts";
+import Spinner from "../../../ui/Spinner";
+import Pagination from "../../../ui/Pagination";
 
 export default function ProductTable() {
   const { products, isLoading, count } = useProducts();

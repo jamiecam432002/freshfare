@@ -1,6 +1,6 @@
-import ProductTable from "../features/products/ProductTable";
-import AddProduct from "../features/products/AddProduct";
-import ProductTableOperations from "../features/products/ProductTableOperations";
+import ProductTable from "../features/products/components/ProductTable";
+import AddProduct from "../features/products/components/AddProduct";
+import ProductTableOperations from "../features/products/components/ProductTableOperations";
 
 export default function Products() {
   return (

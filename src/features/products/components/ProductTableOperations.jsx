@@ -1,8 +1,8 @@
-import CategoryFilters from "./filters/CategoryFilters";
-import SupplierFilters from "./filters/SupplierFilters";
-import StatusFilters from "./filters/StatusFilters";
-import SearchFilter from "./filters/SearchFilter";
-import ClearFiltersBtn from "./filters/ClearFiltersBtn";
+import CategoryFilters from "../filters/CategoryFilters";
+import SupplierFilters from "../filters/SupplierFilters";
+import StatusFilters from "../filters/StatusFilters";
+import SearchFilter from "../filters/SearchFilter";
+import ClearFiltersBtn from "../filters/ClearFiltersBtn";
 
 export default function ProductTableOperations() {
   return (

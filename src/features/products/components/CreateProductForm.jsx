@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import Form from "../../ui/Form";
-import Button from "../../ui/Button";
-import FormRow from "../../ui/FormRow";
-import { createProduct, updateProduct } from "../../services/apiProducts";
+import Form from "../../../ui/Form";
+import Button from "../../../ui/Button";
+import FormRow from "../../../ui/FormRow";
+import { createProduct, updateProduct } from "../../../services/apiProducts";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
-import useCategories from "./hooks/useCategories";
-import useSuppliers from "./hooks/useSuppliers";
+import useCategories from "../hooks/useCategories";
+import useSuppliers from "../hooks/useSuppliers";
 
 export default function CreateProductForm({
   onCloseModal,

@@ -1,6 +1,6 @@
 import { HiPlus } from "react-icons/hi2";
-import Button from "../../ui/Button";
-import Modal from "../../ui/Modal";
+import Button from "../../../ui/Button";
+import Modal from "../../../ui/Modal";
 import CreateProductForm from "./CreateProductForm";
 
 export default function AddProduct() {

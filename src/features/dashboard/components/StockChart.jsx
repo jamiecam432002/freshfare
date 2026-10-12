@@ -40,7 +40,7 @@ export default function StockChart() {
           Current stock quantity by category.
         </p>
       </CardHeader>
-      <CardContent className="h-100">
+      <CardContent className="h-125">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={chartData}
@@ -60,7 +60,7 @@ export default function StockChart() {
             <XAxis
               dataKey="category_name"
               interval={0}
-              angle={-35}
+              angle={-45}
               textAnchor="end"
               height={80}
               margin={10}
