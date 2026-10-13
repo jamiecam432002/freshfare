@@ -6,8 +6,8 @@ import FormRow from "../../../ui/FormRow";
 import { createProduct, updateProduct } from "../../../services/apiProducts";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
-import useCategories from "../hooks/useCategories";
-import useSuppliers from "../hooks/useSuppliers";
+import useSuppliers from "@/hooks/useSuppliers";
+import useCategories from "@/hooks/useCategories";
 
 export default function CreateProductForm({
   onCloseModal,

@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import useCategories from "../hooks/useCategories";
+import useCategories from "../../../hooks/useCategories";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 
 export default function CategoryFilters() {
