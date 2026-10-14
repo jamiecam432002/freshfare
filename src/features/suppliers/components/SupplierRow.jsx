@@ -12,6 +12,12 @@ export default function SupplierRow({ supplier }) {
     <>
       <Table.Row>
         <div className="text-grey-600 font-semibold">{name}</div>
+        <div>Sarah Johnson</div>
+        <div>sarah@greenvalley.com</div>
+        <div>(416) 555-0123</div>
+        <div className="text-center">24</div>
+        <div className="font-semibold">Active</div>
+        <div>Oct 12, 2026</div>
 
         <div>
           <Modal>

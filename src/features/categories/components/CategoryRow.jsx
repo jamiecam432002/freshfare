@@ -3,15 +3,20 @@ import Menus from "../../../ui/Menus";
 import Table from "@/ui/Table";
 import { useNavigate } from "react-router-dom";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
-import CreateProductForm from "@/features/products/components/CreateProductForm";
+import CreateCategoryForm from "./CreateCategoryForm";
+import ConfirmDelete from "@/ui/ConfirmDelete";
 
 export default function CategoryRow({ category }) {
-  const { id, name } = category;
+  const { id, name, description, active } = category;
   const navigate = useNavigate();
   return (
     <>
       <Table.Row>
         <div className="text-grey-600 font-semibold">{name}</div>
+        <div>{description}</div>
+        <div className="text-center">32</div>
+        <div>{active ? "active" : "inactive"}</div>
+        <div>Oct 12, 2026</div>
 
         <div>
           <Modal>
@@ -33,10 +38,10 @@ export default function CategoryRow({ category }) {
               </Menus.List>
             </Menus.Menu>
 
-            {/*  <Modal.Window name="edit">
-              <CreateProductForm productToEdit={product} />
+            <Modal.Window name="edit">
+              <CreateCategoryForm categoryToEdit={category} />
             </Modal.Window>
-            <Modal.Window name="delete">
+            {/* <Modal.Window name="delete">
               <ConfirmDelete
                 resourceName="product"
                 disabled={isDeleting}

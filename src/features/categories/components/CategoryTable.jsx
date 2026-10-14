@@ -7,12 +7,11 @@ import CategoryRow from "./CategoryRow";
 
 export default function CategoryTable() {
   const { data: categories, isLoading, count } = useCategories();
-  console.log(categories);
 
   if (isLoading) return <Spinner />;
   return (
     <Menus>
-      <Table variation="condensed" columns="10rem 16rem auto auto auto auto">
+      <Table variation="condensed" columns="20rem 35rem 6rem auto auto 5rem">
         <Table.Header>
           <div>Category</div>
           <div>Description</div>

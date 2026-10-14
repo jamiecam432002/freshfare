@@ -28,7 +28,7 @@ const card = {
 };
 
 export default function DashboardStats() {
-  const { data: stats = {}, isPending, isError } = useDashboardStats();
+  const { data: stats = {} } = useDashboardStats();
 
   const activePercentage = stats.totalProducts
     ? ((stats.activeProducts / stats.totalProducts) * 100).toFixed(1)
@@ -56,7 +56,7 @@ export default function DashboardStats() {
       variant: "danger",
     },
     {
-      title: "Investory Value",
+      title: "Inventory Value",
       value: formatCurrency(stats.inventoryValue),
       description: "Products needing attention",
       icon: LuBadgeDollarSign,

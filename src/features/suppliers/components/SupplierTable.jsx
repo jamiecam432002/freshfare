@@ -13,13 +13,14 @@ export default function SupplierTable() {
     <Menus>
       <Table
         variation="condensed"
-        columns="10rem 16rem auto auto auto auto auto"
+        columns="25rem 14rem 21rem 13rem 6rem 8rem auto 5rem"
       >
         <Table.Header>
           <div>Supplier</div>
           <div>Contact</div>
           <div>Email</div>
           <div>Phone</div>
+          <div>Products</div>
           <div>Status</div>
           <div>Updated</div>
           <div>Actions</div>

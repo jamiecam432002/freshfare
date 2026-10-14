@@ -5,3 +5,54 @@ export async function getCategories() {
 
   return data;
 }
+
+export async function createCategory(newCategory) {
+  const newCategoryForInsert = {
+    active: newCategory.active,
+    description: newCategory.description,
+    name: newCategory.name,
+  };
+
+  const { data, error } = await supabase
+    .from("categories")
+    .insert(newCategoryForInsert)
+    .select()
+    .single();
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
+}
+
+export async function updateCategory(category) {
+  const id = Number(category.id);
+  const updatedCategoryForInsert = {
+    active: category.active,
+    description: category.description,
+    name: category.name,
+  };
+
+  const { data, error } = await supabase
+    .from("categories")
+    .update(updatedCategoryForInsert)
+    .eq("id", id)
+    .select();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function deleteCategory(id) {
+  const { data, error } = await supabase
+    .from("categories")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data;
+}

@@ -1,3 +1,4 @@
+import AddCategory from "@/features/categories/components/AddCategory";
 import CategoryTable from "@/features/categories/components/CategoryTable";
 
 export default function Categories() {
@@ -5,10 +6,10 @@ export default function Categories() {
     <>
       <div className="flex items-center justify-between">
         <div>
-          <h1>Categories</h1>
+          <h1 className="mb-2">Categories</h1>
           <h2>Organize your products into categories.</h2>
         </div>
-        {/* <AddCategory /> */}
+        <AddCategory />
       </div>
       <div>
         <div className="flex items-center gap-6">
