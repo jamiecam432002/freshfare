@@ -5,14 +5,12 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { createCategory, updateCategory } from "@/services/apiCategories";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { useEffect } from "react";
 
 export default function CreateCategoryForm({
   onCloseModal,
   categoryToEdit = {},
 }) {
   const { id: editId, ...editValues } = categoryToEdit;
-  console.log(editValues.active);
   const isEditing = Boolean(editId);
   const {
     register,
@@ -33,8 +31,7 @@ export default function CreateCategoryForm({
   const queryClient = useQueryClient();
 
   async function onSubmit(formData) {
-    if (formData.id !== "") {
-      console.log("id is present, must be an edit");
+    if (isEditing) {
       updateCategoryMutation.mutate(formData);
     } else {
       createCategoryMutation.mutate(formData);
@@ -100,7 +97,11 @@ export default function CreateCategoryForm({
         <select
           id="active"
           {...register("active", {
-            setValueAs: (value) => value === "true",
+            setValueAs: (value) => {
+              if (value === true || value === "true") return true;
+              if (value === false || value === "false") return false;
+              return undefined;
+            },
             validate: (value) =>
               typeof value === "boolean" || "Please select a status",
           })}

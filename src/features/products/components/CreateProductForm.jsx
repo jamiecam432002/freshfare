@@ -26,7 +26,9 @@ export default function CreateProductForm({
     formState: { errors, isSubmitting },
   } = useForm({
     mode: "onBlur",
-    defaultValues: isEditing ? editValues : {},
+    defaultValues: isEditing
+      ? { ...editValues, active: editValues?.active ?? true }
+      : {},
   });
 
   useEffect(() => {
@@ -37,8 +39,7 @@ export default function CreateProductForm({
   const queryClient = useQueryClient();
 
   async function onSubmit(formData) {
-    if (formData.id !== "") {
-      console.log("id is present");
+    if (isEditing) {
       updateProductMutation.mutate(formData);
     } else {
       createProductMutation.mutate(formData);
@@ -220,7 +221,13 @@ export default function CreateProductForm({
           className="text-[1.4rem]"
           disabled={isSubmitting}
           {...register("active", {
-            required: "Set the products ACTIVE status",
+            setValueAs: (value) => {
+              if (value === true || value === "true") return true;
+              if (value === false || value === "false") return false;
+              return undefined;
+            },
+            validate: (value) =>
+              typeof value === "boolean" || "please select a status",
           })}
         >
           <option value="">Set Active Status</option>
