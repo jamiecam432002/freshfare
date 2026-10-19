@@ -13,10 +13,7 @@ export default function CategoryTable() {
   if (isLoading) return <Spinner />;
   return (
     <Menus>
-      <Table
-        variation="condensed"
-        columns="7rem 20rem 35rem 6rem auto auto 5rem"
-      >
+      <Table variation="condensed" columns="7rem 35rem 9rem 9rem 9rem 5rem">
         <Table.Header>
           <div>Category</div>
           <div>Description</div>

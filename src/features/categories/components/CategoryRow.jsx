@@ -22,7 +22,6 @@ export default function CategoryRow({ category }) {
           name={name}
           size={64}
         />
-        <div className="text-grey-600 font-semibold">{name}</div>
         <div>{description}</div>
         <div className="text-center">32</div>
         <div className="font-semibold">{active ? "active" : "inactive"}</div>

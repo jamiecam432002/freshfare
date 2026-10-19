@@ -19,6 +19,7 @@ export default function SupplierTable() {
       >
         <Table.Header>
           <div>Supplier</div>
+          <div>Name</div>
           <div>Contact</div>
           <div>Email</div>
           <div>Phone</div>
