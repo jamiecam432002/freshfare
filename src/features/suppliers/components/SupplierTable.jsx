@@ -15,7 +15,7 @@ export default function SupplierTable() {
     <Menus>
       <Table
         variation="condensed"
-        columns="25rem 20rem 21rem 13rem 6rem 8rem auto 5rem"
+        columns="7rem 25rem 20rem 21rem 13rem 6rem 8rem auto 5rem"
       >
         <Table.Header>
           <div>Supplier</div>

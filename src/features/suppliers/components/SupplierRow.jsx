@@ -3,19 +3,25 @@ import Menus from "../../../ui/Menus";
 import Table from "@/ui/Table";
 import { useNavigate } from "react-router-dom";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
-import CreateProductForm from "@/features/products/components/CreateProductForm";
 import { useDeleteSupplier } from "../hooks/useDeleteSupplier";
 import ConfirmDelete from "@/ui/ConfirmDelete";
 import CreateSupplierForm from "./CreateSupplierForm";
+import ProductImage from "@/features/products/components/ProductImage";
 
 export default function SupplierRow({ supplier }) {
-  const { id, name, email, contact_name, phone, active } = supplier;
+  const { id, name, email, contact_name, phone, active, image_path } = supplier;
   const { isDeleting, deleteSupplier } = useDeleteSupplier();
   const navigate = useNavigate();
 
   return (
     <>
       <Table.Row>
+        <ProductImage
+          key={image_path ?? id}
+          path={image_path}
+          name={name}
+          size={64}
+        />
         <div className="text-grey-600 font-semibold">{name}</div>
         <div>{contact_name}</div>
         <div>{email}</div>
