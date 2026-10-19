@@ -4,9 +4,11 @@ import Pagination from "@/ui/Pagination";
 import Spinner from "@/ui/Spinner";
 import Table from "@/ui/Table";
 import CategoryRow from "./CategoryRow";
+import useCategoryCount from "@/hooks/useCategoryCount";
 
 export default function CategoryTable() {
-  const { data: categories, isLoading, count } = useCategories();
+  const { data: categories, isLoading } = useCategories();
+  const { data: count = 0 } = useCategoryCount();
 
   if (isLoading) return <Spinner />;
   return (

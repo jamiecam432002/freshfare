@@ -4,10 +4,10 @@ import { useLowStockProducts } from "../hooks/useLowStockProducts";
 import Spinner from "@/ui/Spinner";
 
 export default function LowStockTable() {
-  const { data = [], isLoading, error } = useLowStockProducts();
+  const { data, isLoading } = useLowStockProducts();
   if (isLoading) return <Spinner />;
   return (
-    <Table columns="20rem 1fr 1fr 1fr 1fr" variation="condensed">
+    <Table columns="6rem 20rem 1fr 1fr 1fr 1fr" variation="condensed">
       <Table.Header>
         <div>Product</div>
         <div>SKU</div>

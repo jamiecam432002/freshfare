@@ -11,7 +11,7 @@ export default function ProductTable() {
   if (isLoading) return <Spinner />;
   return (
     <Menus>
-      <Table columns="26rem 7rem 12rem 7rem 7rem auto 10rem 5rem">
+      <Table columns="7rem 26rem 7rem 12rem 7rem 7rem auto 10rem 5rem">
         <Table.Header>
           <div>Product</div>
           <div>SKU</div>

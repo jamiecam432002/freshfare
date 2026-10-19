@@ -7,6 +7,7 @@ import Menus from "../../../ui/Menus";
 import ConfirmDelete from "../../../ui/ConfirmDelete";
 import { useNavigate } from "react-router-dom";
 import Table from "@/ui/Table";
+import ProductImage from "./ProductImage";
 
 export default function ProductRow({ product }) {
   const {
@@ -16,6 +17,7 @@ export default function ProductRow({ product }) {
     sku,
     quantity,
     active,
+    image_path,
     categories: category,
     suppliers: supplier,
   } = product;
@@ -25,6 +27,12 @@ export default function ProductRow({ product }) {
   return (
     <>
       <Table.Row>
+        <ProductImage
+          key={image_path ?? id}
+          path={image_path}
+          name={name}
+          size={64}
+        />
         <div className="text-grey-600 font-semibold">{name}</div>
         <div>{sku}</div>
         <div>{category.name}</div>

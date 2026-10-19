@@ -24,7 +24,6 @@ function CategoryLegend({ data, total }) {
   return (
     <ul aria-label="Products by category" className="space-y-3">
       {data.map((category) => {
-        console.log(CHART_COLORS["category.category_name"]);
         const percentage =
           total > 0 ? (category.product_count / total) * 100 : 0;
 
@@ -58,7 +57,6 @@ function CategorySector(props) {
 
 export default function CategoryChart() {
   const { data = [], isPending } = useCategorySummary();
-  console.log(data);
 
   const chartData = useMemo(() => {
     const categories = data ?? [];

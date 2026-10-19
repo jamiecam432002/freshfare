@@ -5,17 +5,20 @@ import { useNavigate } from "react-router-dom";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
 import CreateCategoryForm from "./CreateCategoryForm";
 import ConfirmDelete from "@/ui/ConfirmDelete";
+import { useDeleteCategory } from "../hooks/useDeleteCategory";
 
 export default function CategoryRow({ category }) {
   const { id, name, description, active } = category;
+  const { isDeleting, deleteCategory } = useDeleteCategory();
   const navigate = useNavigate();
+
   return (
     <>
       <Table.Row>
         <div className="text-grey-600 font-semibold">{name}</div>
         <div>{description}</div>
         <div className="text-center">32</div>
-        <div>{active ? "active" : "inactive"}</div>
+        <div className="font-semibold">{active ? "active" : "inactive"}</div>
         <div>Oct 12, 2026</div>
 
         <div>
@@ -41,13 +44,13 @@ export default function CategoryRow({ category }) {
             <Modal.Window name="edit">
               <CreateCategoryForm categoryToEdit={category} />
             </Modal.Window>
-            {/* <Modal.Window name="delete">
+            <Modal.Window name="delete">
               <ConfirmDelete
-                resourceName="product"
+                resourceName="category"
                 disabled={isDeleting}
-                onConfirm={() => deleteProduct(id)}
+                onConfirm={() => deleteCategory(id)}
               />
-            </Modal.Window> */}
+            </Modal.Window>
           </Modal>
         </div>
       </Table.Row>

@@ -11,6 +11,8 @@ import Suppliers from "./pages/Suppliers";
 import Categories from "./pages/Categories";
 import Purchasing from "./pages/Purchasing";
 import Settings from "./pages/Settings";
+import Supplier from "./pages/Supplier";
+import Category from "./pages/Category";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +35,9 @@ function App() {
             <Route path="products/:productId" element={<Product />} />
 
             <Route path="suppliers" element={<Suppliers />} />
+            <Route path="suppliers/:supplierId" element={<Supplier />} />
             <Route path="categories" element={<Categories />} />
+            <Route path="categories/:categoryId" element={<Category />} />
             <Route path="purchasing" element={<Purchasing />} />
             <Route path="reports" element={<Reports />} />
             <Route path="settings" element={<Settings />} />

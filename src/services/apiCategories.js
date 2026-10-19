@@ -1,9 +1,22 @@
 import supabase from "./supabase";
 
 export async function getCategories() {
-  const { data } = await supabase.from("categories").select("*");
+  const { data, error } = await supabase.from("categories").select("*");
+
+  if (error) throw new Error(error.message);
 
   return data;
+}
+
+export async function getCategoryCount() {
+  const { count, error } = await supabase.from("categories").select("*", {
+    count: "exact",
+    head: true,
+  });
+
+  if (error) throw new Error(error.message);
+
+  return count;
 }
 
 export async function createCategory(newCategory) {

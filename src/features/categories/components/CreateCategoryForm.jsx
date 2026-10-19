@@ -69,7 +69,7 @@ export default function CreateCategoryForm({
         <input
           type="text"
           id="name"
-          {...register("name", { required: "Supplier name is required" })}
+          {...register("name", { required: "Category name is required" })}
           className="border-grey-300 bg-grey-0 rounded-[5px] border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
         />
         {errors.name && (
@@ -83,7 +83,7 @@ export default function CreateCategoryForm({
           type="text"
           id="description"
           {...register("description", {
-            required: "Supplier description is required",
+            required: "Category description is required",
           })}
           className="border-grey-300 bg-grey-0 rounded-[5px] border px-[1.2rem] py-[0.8rem] text-[1.4rem] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
         />
@@ -123,7 +123,7 @@ export default function CreateCategoryForm({
           Cancel
         </Button>
         <Button variation="primary" disabled={isSubmitting}>
-          Create Category
+          {isEditing ? "Update Category" : "Create Category"}
         </Button>
       </div>
     </Form>
