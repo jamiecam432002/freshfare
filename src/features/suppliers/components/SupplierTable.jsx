@@ -1,7 +1,4 @@
-import {
-  useSuppliers,
-  useSupplierCount,
-} from "@/features/suppliers/hooks/useSuppliers";
+import { useSuppliers } from "@/features/suppliers/hooks/useSuppliers";
 import Menus from "@/ui/Menus";
 import Pagination from "@/ui/Pagination";
 import Spinner from "@/ui/Spinner";
@@ -9,8 +6,7 @@ import Table from "@/ui/Table";
 import SupplierRow from "./SupplierRow";
 
 export default function SupplierTable() {
-  const { data: suppliers, isLoading } = useSuppliers();
-  const { data: count = 0 } = useSupplierCount();
+  const { suppliers, isLoading, count } = useSuppliers();
 
   if (isLoading) return <Spinner />;
   return (

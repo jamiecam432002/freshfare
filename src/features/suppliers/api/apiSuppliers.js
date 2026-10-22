@@ -1,9 +1,31 @@
+import { uploadThumbnailImage } from "@/services/apiStorage";
 import supabase from "../../../services/supabase";
 
-export async function getSuppliers() {
-  const { data } = await supabase.from("suppliers_with_counts").select("*");
+export async function getSuppliers(status, search) {
+  let query = supabase
+    .from("suppliers_with_counts")
+    .select("*", { count: "exact" });
 
-  return data;
+  // SEARCH
+  if (search) {
+    query = query.or(`name.ilike.%${search}%,contact_name.ilike.%${search}%`);
+  }
+
+  // FILTER
+  if (status === "active") {
+    query = query.eq("active", true);
+  }
+  if (status === "inactive") {
+    query = query.eq("active", false);
+  }
+
+  const { data, error, count } = await query;
+  if (error) {
+    console.error(error.message);
+    throw new Error("Suppliers could not be loaded");
+  }
+
+  return { data, count };
 }
 
 export async function getSupplierCount() {
@@ -15,6 +37,47 @@ export async function getSupplierCount() {
   if (error) throw new Error(error.message);
 
   return count;
+}
+
+export async function saveSupplier({ id, values, imageFile }) {
+  let newImagePath = null;
+
+  // first upload a new image if one was selected.
+  if (imageFile) {
+    newImagePath = await uploadThumbnailImage(imageFile, "suppliers");
+  }
+
+  const { id: formId, ...supplierValues } = values;
+
+  // only change image_path if an image was uploaded.
+  const supplierData = {
+    ...supplierValues,
+    ...(newImagePath && {
+      image_path: newImagePath,
+    }),
+  };
+
+  try {
+    const query = id
+      ? supabase.from("suppliers").update(supplierData).eq("id", id)
+      : supabase.from("suppliers").insert(supplierData);
+    const { data, error } = await query.select().single();
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    // remove the newly uploaded image if DB save fails
+    if (newImagePath) {
+      const { error: cleanupError } = await supabase.storage
+        .from("freshfare-images")
+        .remove([newImagePath]);
+
+      if (cleanupError) {
+        console.error("Image cleanup failed:", cleanupError);
+      }
+    }
+    throw error;
+  }
 }
 
 export async function createSupplier(newSupplier) {

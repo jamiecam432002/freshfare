@@ -1,5 +1,6 @@
 import AddSupplier from "@/features/suppliers/components/AddSupplier";
 import SupplierTable from "@/features/suppliers/components/SupplierTable";
+import SupplierTableOperations from "@/features/suppliers/components/SupplierTableOperations";
 
 export default function Suppliers() {
   return (
@@ -13,7 +14,7 @@ export default function Suppliers() {
       </div>
       <div>
         <div className="flex items-center gap-6">
-          {/* <SupplierTableOperations /> */}
+          <SupplierTableOperations />
         </div>
         <SupplierTable />
       </div>

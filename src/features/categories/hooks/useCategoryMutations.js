@@ -1,31 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  createCategory,
+  saveCategory,
   deleteCategory as deleteCategoryApi,
-  updateCategory,
 } from "../api/apiCategories";
 import toast from "react-hot-toast";
 
-export function useCreateCategory() {
+export function useSaveCategory() {
   const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: createCategory,
-    onSuccess: () => {
-      toast.success("category was successfully created");
-      queryClient.invalidateQueries({
-        queryKey: ["categories"],
-      });
-    },
-  });
-}
 
-export function useUpdateCategory() {
-  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: updateCategory,
+    mutationFn: saveCategory,
     onSuccess: () => {
-      toast.success("category was successfully saved");
-      queryClient.invalidateQueries({
+      return queryClient.invalidateQueries({
         queryKey: ["categories"],
       });
     },

@@ -2,7 +2,7 @@ import supabase from "./supabase";
 
 const BUCKET = "freshfare-images";
 
-export async function uploadProductImage(file) {
+export async function uploadThumbnailImage(file, domain) {
   const extensions = {
     "image/webp": "webp",
     "image/png": "png",
@@ -16,7 +16,7 @@ export async function uploadProductImage(file) {
   }
 
   const fileName = `${crypto.randomUUID()}.${extension}`;
-  const filePath = `products/${fileName}`;
+  const filePath = `${domain}/${fileName}`;
 
   const { data, error } = await supabase.storage
     .from(BUCKET)

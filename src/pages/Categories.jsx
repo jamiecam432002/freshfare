@@ -1,5 +1,6 @@
 import AddCategory from "@/features/categories/components/AddCategory";
 import CategoryTable from "@/features/categories/components/CategoryTable";
+import CategoryTableOperations from "@/features/categories/components/CategoryTableOperations";
 
 export default function Categories() {
   return (
@@ -13,7 +14,7 @@ export default function Categories() {
       </div>
       <div>
         <div className="flex items-center gap-6">
-          {/* <CategoryTableOperations /> */}
+          <CategoryTableOperations />
         </div>
         <CategoryTable />
       </div>

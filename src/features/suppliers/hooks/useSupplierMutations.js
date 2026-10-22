@@ -1,35 +1,23 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import {
-  createSupplier,
-  updateSupplier,
   deleteSupplier as deleteSupplierApi,
+  saveSupplier,
 } from "../api/apiSuppliers";
 
-export function useCreateSupplier() {
+export function useSaveSupplier() {
   const queryClient = useQueryClient();
+
   return useMutation({
-    mutationFn: createSupplier,
+    mutationFn: saveSupplier,
     onSuccess: () => {
-      toast.success("supplier was successfully created");
-      queryClient.invalidateQueries({
+      return queryClient.invalidateQueries({
         queryKey: ["suppliers"],
       });
     },
   });
 }
-export function useUpdateSupplier() {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: updateSupplier,
-    onSuccess: () => {
-      toast.success("supplier was successfully saved");
-      queryClient.invalidateQueries({
-        queryKey: ["suppliers"],
-      });
-    },
-  });
-}
+
 export function useDeleteSupplier() {
   const queryClient = useQueryClient();
   const { isPending: isDeleting, mutate: deleteSupplier } = useMutation({

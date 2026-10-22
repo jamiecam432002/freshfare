@@ -1,7 +1,4 @@
-import {
-  useCategories,
-  useCategoryCount,
-} from "@/features/categories/hooks/useCategories";
+import { useCategories } from "@/features/categories/hooks/useCategories";
 import Menus from "@/ui/Menus";
 import Pagination from "@/ui/Pagination";
 import Spinner from "@/ui/Spinner";
@@ -9,8 +6,7 @@ import Table from "@/ui/Table";
 import CategoryRow from "./CategoryRow";
 
 export default function CategoryTable() {
-  const { data: categories, isLoading } = useCategories();
-  const { data: count = 0 } = useCategoryCount();
+  const { categories, isLoading, count } = useCategories();
 
   if (isLoading) return <Spinner />;
   return (

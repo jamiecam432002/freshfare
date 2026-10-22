@@ -2,10 +2,7 @@ import Form from "@/ui/Form";
 import FormRow from "@/ui/FormRow";
 import Button from "../../../ui/Button";
 import { useForm } from "react-hook-form";
-import {
-  useCreateCategory,
-  useUpdateCategory,
-} from "../hooks/useCategoryMutations";
+import { useSaveCategory } from "../hooks/useCategoryMutations";
 
 export default function CreateCategoryForm({
   onCloseModal,
@@ -30,23 +27,21 @@ export default function CreateCategoryForm({
       : {},
   });
 
-  const { mutate: updateCategory } = useUpdateCategory();
-  const { mutate: createCategory } = useCreateCategory();
+  const { mutateAsync: saveCategoryMutation } = useSaveCategory();
 
   async function onSubmit(formData) {
-    const options = {
-      onSuccess: () => {
-        reset();
-        onCloseModal?.();
-      },
-      onError: (error) => {
-        console.log("Mutation failed:", error);
-      },
-    };
-    if (isEditing) {
-      updateCategory(formData, options);
-    } else {
-      createCategory(formData, options);
+    const { imageFile, ...values } = formData;
+    try {
+      await saveCategoryMutation({
+        id: editId,
+        values,
+        imageFile: imageFile?.[0],
+      });
+
+      reset();
+      onCloseModal?.();
+    } catch (error) {
+      console.error(error.message);
     }
   }
 
@@ -103,6 +98,31 @@ export default function CreateCategoryForm({
             {errors.active.message}
           </span>
         )}
+      </FormRow>
+      <FormRow fieldName="category-image">
+        <input
+          id="category-image"
+          type="file"
+          accept="image/webp, image/png, image/jpeg"
+          {...register("imageFile", {
+            validate: (files) => {
+              const file = files?.[0];
+
+              if (!file) return true;
+              if (file.size > 2 * 1024 * 1024) {
+                return "Image must be smaller than 2MB";
+              }
+
+              if (
+                !["image/webp", "image/png", "image/jpeg"].includes(file.type)
+              ) {
+                return "unsupported image format";
+              }
+              return true;
+            },
+          })}
+        />
+        {errors.productImage && <p>{errors.productImage.message}</p>}
       </FormRow>
       <input type="hidden" id="id" value={editId} {...register("id")} />
       <div className="flex justify-end gap-5 px-0 pt-[1.2rem]">
