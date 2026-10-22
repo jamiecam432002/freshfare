@@ -1,15 +1,22 @@
 import Modal from "../../../ui/Modal";
 import Menus from "../../../ui/Menus";
 import Table from "@/ui/Table";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
 import CreateCategoryForm from "./CreateCategoryForm";
 import ConfirmDelete from "@/ui/ConfirmDelete";
-import { useDeleteCategory } from "../hooks/useDeleteCategory";
 import ProductImage from "@/features/products/components/ProductImage";
+import { useDeleteCategory } from "../hooks/useCategoryMutations";
 
 export default function CategoryRow({ category }) {
-  const { id, name, description, active, image_path } = category;
+  const {
+    id,
+    name,
+    description,
+    active,
+    image_path,
+    product_count: productCount,
+  } = category;
   const { isDeleting, deleteCategory } = useDeleteCategory();
   const navigate = useNavigate();
 
@@ -20,10 +27,12 @@ export default function CategoryRow({ category }) {
           key={image_path ?? id}
           path={image_path}
           name={name}
-          size={64}
+          size={90}
         />
         <div>{description}</div>
-        <div className="text-center">32</div>
+        <div className="text-center">
+          <Link to={`/products/?category_id=${id}`}>{productCount}</Link>
+        </div>
         <div className="font-semibold">{active ? "active" : "inactive"}</div>
         <div>Oct 12, 2026</div>
 

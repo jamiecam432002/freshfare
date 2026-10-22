@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { HiOutlineUser } from "react-icons/hi2";
-import useSuppliers from "@/hooks/useSuppliers";
+import { useSuppliers } from "@/features/suppliers/hooks/useSuppliers";
 
 export default function SupplierFilters() {
   const [searchParams, setSearchParams] = useSearchParams();

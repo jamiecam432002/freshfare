@@ -1,7 +1,7 @@
-import supabase from "./supabase";
+import supabase from "../../../services/supabase";
 
 export async function getSuppliers() {
-  const { data } = await supabase.from("suppliers").select("*");
+  const { data } = await supabase.from("suppliers_with_counts").select("*");
 
   return data;
 }

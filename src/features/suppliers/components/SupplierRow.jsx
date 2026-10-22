@@ -3,13 +3,23 @@ import Menus from "../../../ui/Menus";
 import Table from "@/ui/Table";
 import { useNavigate } from "react-router-dom";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
-import { useDeleteSupplier } from "../hooks/useDeleteSupplier";
+import { Link } from "react-router-dom";
 import ConfirmDelete from "@/ui/ConfirmDelete";
 import CreateSupplierForm from "./CreateSupplierForm";
 import ProductImage from "@/features/products/components/ProductImage";
+import { useDeleteSupplier } from "../hooks/useSupplierMutations";
 
 export default function SupplierRow({ supplier }) {
-  const { id, name, email, contact_name, phone, active, image_path } = supplier;
+  const {
+    id,
+    name,
+    email,
+    contact_name,
+    phone,
+    active,
+    image_path,
+    product_count: productCount,
+  } = supplier;
   const { isDeleting, deleteSupplier } = useDeleteSupplier();
   const navigate = useNavigate();
 
@@ -20,13 +30,15 @@ export default function SupplierRow({ supplier }) {
           key={image_path ?? id}
           path={image_path}
           name={name}
-          size={64}
+          size={90}
         />
         <div className="text-grey-600 font-semibold">{name}</div>
         <div>{contact_name}</div>
         <div>{email}</div>
         <div>{phone}</div>
-        <div className="text-center">24</div>
+        <div className="text-center">
+          <Link to={`/products/?supplier_id=${id}`}>{productCount}</Link>
+        </div>
         <div className="font-semibold">{active ? "active" : "inactive"}</div>
         <div>Oct 12, 2026</div>
 

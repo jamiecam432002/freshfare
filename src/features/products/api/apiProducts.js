@@ -1,5 +1,6 @@
-import { PAGE_SIZE } from "../utils/constants";
-import supabase from "./supabase";
+import { PAGE_SIZE } from "../../../utils/constants";
+import supabase from "../../../services/supabase";
+import { uploadProductImage } from "@/services/apiStorage";
 
 export async function getProducts(status, category, supplier, page, search) {
   let query = supabase
@@ -88,6 +89,55 @@ export async function deleteProduct(id) {
   }
 
   return data;
+}
+
+export async function saveProduct({ id, values, imageFile }) {
+  let newImagePath = null;
+
+  // first upload a new image if one was selected.
+  if (imageFile) {
+    newImagePath = await uploadProductImage(imageFile);
+  }
+  //console.log(`image file variable:`, imageFile);
+  //console.log(`newimagepath variable:`, newImagePath);
+
+  const {
+    categories,
+    suppliers,
+    image_path,
+    id: formId,
+    ...productValues
+  } = values;
+
+  // only change image_path if an image was uploaded.
+  const productData = {
+    ...productValues,
+    ...(newImagePath && {
+      image_path: newImagePath,
+    }),
+  };
+
+  try {
+    const query = id
+      ? supabase.from("products").update(productData).eq("id", id)
+      : supabase.from("products").insert(productData);
+    const { data, error } = await query.select().single();
+
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    // remove the newly uploaded image if DB save fails
+    if (newImagePath) {
+      const { error: cleanupError } = await supabase.storage
+        .from("freshfare-images")
+        .remove([newImagePath]);
+
+      if (cleanupError) {
+        console.error("Image cleanup failed:", cleanupError);
+      }
+    }
+    throw error;
+  }
 }
 
 export async function updateProduct(product) {

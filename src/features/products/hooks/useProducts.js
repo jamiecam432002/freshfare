@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getProducts } from "../../../services/apiProducts";
-import { useSearchParams } from "react-router-dom";
+import { getProducts, getProduct } from "../api/apiProducts";
+import { useParams, useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../../utils/constants";
 
 export function useProducts() {
@@ -82,4 +82,18 @@ export function useProducts() {
   }
 
   return { isLoading, error, products, count };
+}
+
+export function useProduct() {
+  const { productId } = useParams();
+  const {
+    isLoading,
+    data: product,
+    error,
+  } = useQuery({
+    queryKey: ["products", productId],
+    queryFn: () => getProduct(productId),
+    retry: false,
+  });
+  return { isLoading, product, error };
 }

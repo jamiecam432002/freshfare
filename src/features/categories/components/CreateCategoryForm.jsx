@@ -2,9 +2,10 @@ import Form from "@/ui/Form";
 import FormRow from "@/ui/FormRow";
 import Button from "../../../ui/Button";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { createCategory, updateCategory } from "@/services/apiCategories";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
+import {
+  useCreateCategory,
+  useUpdateCategory,
+} from "../hooks/useCategoryMutations";
 
 export default function CreateCategoryForm({
   onCloseModal,
@@ -12,6 +13,7 @@ export default function CreateCategoryForm({
 }) {
   const { id: editId, ...editValues } = categoryToEdit;
   const isEditing = Boolean(editId);
+
   const {
     register,
     handleSubmit,
@@ -28,40 +30,25 @@ export default function CreateCategoryForm({
       : {},
   });
 
-  const queryClient = useQueryClient();
+  const { mutate: updateCategory } = useUpdateCategory();
+  const { mutate: createCategory } = useCreateCategory();
 
   async function onSubmit(formData) {
+    const options = {
+      onSuccess: () => {
+        reset();
+        onCloseModal?.();
+      },
+      onError: (error) => {
+        console.log("Mutation failed:", error);
+      },
+    };
     if (isEditing) {
-      updateCategoryMutation.mutate(formData);
+      updateCategory(formData, options);
     } else {
-      createCategoryMutation.mutate(formData);
+      createCategory(formData, options);
     }
   }
-
-  const updateCategoryMutation = useMutation({
-    mutationFn: updateCategory,
-    onSuccess: () => {
-      toast.success("category was successfully saved");
-      queryClient.invalidateQueries({
-        queryKey: ["categories"],
-      });
-
-      onCloseModal?.();
-    },
-  });
-
-  const createCategoryMutation = useMutation({
-    mutationFn: createCategory,
-    onSuccess: () => {
-      toast.success("category was successfully created");
-      queryClient.invalidateQueries({
-        queryKey: ["categories"],
-      });
-
-      reset();
-      onCloseModal?.();
-    },
-  });
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

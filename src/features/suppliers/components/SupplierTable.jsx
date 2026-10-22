@@ -1,10 +1,12 @@
-import useSuppliers from "@/hooks/useSuppliers";
+import {
+  useSuppliers,
+  useSupplierCount,
+} from "@/features/suppliers/hooks/useSuppliers";
 import Menus from "@/ui/Menus";
 import Pagination from "@/ui/Pagination";
 import Spinner from "@/ui/Spinner";
 import Table from "@/ui/Table";
 import SupplierRow from "./SupplierRow";
-import useSupplierCount from "@/hooks/useSupplierCount";
 
 export default function SupplierTable() {
   const { data: suppliers, isLoading } = useSuppliers();
@@ -15,7 +17,7 @@ export default function SupplierTable() {
     <Menus>
       <Table
         variation="condensed"
-        columns="7rem 25rem 20rem 21rem 13rem 6rem 8rem auto 5rem"
+        columns="9rem 25rem 20rem 21rem 13rem 6rem 8rem auto 5rem"
       >
         <Table.Header>
           <div>Supplier</div>

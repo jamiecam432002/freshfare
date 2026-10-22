@@ -1,10 +1,11 @@
-import { createSupplier, updateSupplier } from "@/services/apiSuppliers";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import Form from "@/ui/Form";
 import FormRow from "@/ui/FormRow";
 import Button from "../../../ui/Button";
+import {
+  useCreateSupplier,
+  useUpdateSupplier,
+} from "../hooks/useSupplierMutations";
 
 export default function CreateSupplierForm({
   onCloseModal,
@@ -30,39 +31,26 @@ export default function CreateSupplierForm({
       : {},
   });
 
-  const queryClient = useQueryClient();
+  const { mutate: createSupplier } = useCreateSupplier();
+  const { mutate: updateSupplier } = useUpdateSupplier();
 
   async function onSubmit(formData) {
+    const options = {
+      onSuccess: () => {
+        reset();
+        onCloseModal?.();
+      },
+      onError: (error) => {
+        console.log("Mutation failed:", error);
+      },
+    };
     if (isEditing) {
-      updateSupplierMutation.mutate(formData);
+      updateSupplier(formData, options);
     } else {
-      createSupplierMutation.mutate(formData);
+      createSupplier(formData, options);
     }
   }
 
-  const updateSupplierMutation = useMutation({
-    mutationFn: updateSupplier,
-    onSuccess: () => {
-      toast.success("supplier was successfully saved");
-      queryClient.invalidateQueries({
-        queryKey: ["suppliers"],
-      });
-      onCloseModal?.();
-    },
-  });
-
-  const createSupplierMutation = useMutation({
-    mutationFn: createSupplier,
-    onSuccess: () => {
-      toast.success("supplier was successfully created");
-      queryClient.invalidateQueries({
-        queryKey: ["suppliers"],
-      });
-
-      reset();
-      onCloseModal?.();
-    },
-  });
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow fieldName="name">

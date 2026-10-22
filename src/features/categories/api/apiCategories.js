@@ -1,7 +1,9 @@
-import supabase from "./supabase";
+import supabase from "../../../services/supabase";
 
 export async function getCategories() {
-  const { data, error } = await supabase.from("categories").select("*");
+  const { data, error } = await supabase
+    .from("categories_with_counts")
+    .select("*");
 
   if (error) throw new Error(error.message);
 

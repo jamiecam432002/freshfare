@@ -10,6 +10,7 @@ export default function LowStockTable() {
     <Table columns="6rem 20rem 1fr 1fr 1fr 1fr" variation="condensed">
       <Table.Header>
         <div>Product</div>
+        <div>Name</div>
         <div>SKU</div>
         <div>Remaining</div>
         <div>Status</div>

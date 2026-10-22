@@ -1,13 +1,13 @@
 import { formatCurrency } from "../../../utils/helpers";
 import CreateProductForm from "./CreateProductForm";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
-import { useDeleteProduct } from "../hooks/useDeleteProduct";
 import Modal from "../../../ui/Modal";
 import Menus from "../../../ui/Menus";
 import ConfirmDelete from "../../../ui/ConfirmDelete";
 import { useNavigate } from "react-router-dom";
 import Table from "@/ui/Table";
 import ProductImage from "./ProductImage";
+import { useDeleteProduct } from "../hooks/useProductMutations";
 
 export default function ProductRow({ product }) {
   const {
@@ -31,7 +31,7 @@ export default function ProductRow({ product }) {
           key={image_path ?? id}
           path={image_path}
           name={name}
-          size={64}
+          size={75}
         />
         <div className="text-grey-600 font-semibold">{name}</div>
         <div>{sku}</div>

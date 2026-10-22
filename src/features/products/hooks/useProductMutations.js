@@ -1,6 +1,22 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  saveProduct,
+  deleteProduct as deleteProductApi,
+} from "../api/apiProducts";
 import toast from "react-hot-toast";
-import { deleteProduct as deleteProductApi } from "../../../services/apiProducts";
+
+export function useSaveProduct() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: saveProduct,
+    onSuccess: () => {
+      return queryClient.invalidateQueries({
+        queryKey: ["products"],
+      });
+    },
+  });
+}
 
 export function useDeleteProduct() {
   const queryClient = useQueryClient();

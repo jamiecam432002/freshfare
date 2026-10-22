@@ -1,13 +1,11 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import Form from "../../../ui/Form";
 import Button from "../../../ui/Button";
 import FormRow from "../../../ui/FormRow";
-import { createProduct, updateProduct } from "../../../services/apiProducts";
-import toast from "react-hot-toast";
 import { useEffect } from "react";
-import useSuppliers from "@/hooks/useSuppliers";
-import useCategories from "@/hooks/useCategories";
+import { useSuppliers } from "@/features/suppliers/hooks/useSuppliers";
+import { useCategories } from "@/features/categories/hooks/useCategories";
+import { useSaveProduct } from "../hooks/useProductMutations";
 
 export default function CreateProductForm({
   onCloseModal,
@@ -18,6 +16,7 @@ export default function CreateProductForm({
 
   const { data: categories } = useCategories();
   const { data: suppliers } = useSuppliers();
+  const { mutateAsync: saveProductMutation, isPending } = useSaveProduct();
 
   const {
     register,
@@ -36,41 +35,27 @@ export default function CreateProductForm({
     reset();
   }, [categories, suppliers, reset]);
 
-  const queryClient = useQueryClient();
-
   async function onSubmit(formData) {
-    if (isEditing) {
-      updateProductMutation.mutate(formData);
-    } else {
-      createProductMutation.mutate(formData);
-    }
-  }
+    const { imageFile, ...values } = formData;
 
-  const updateProductMutation = useMutation({
-    mutationFn: updateProduct,
-    onSuccess: () => {
-      toast.success("product was successfully saved");
-      queryClient.invalidateQueries({
-        queryKey: ["products"],
-      });
-
-      onCloseModal?.();
-    },
-  });
-
-  const createProductMutation = useMutation({
-    mutationFn: createProduct,
-    onSuccess: () => {
-      toast.success("Product was successfully created");
-      queryClient.invalidateQueries({
-        queryKey: ["products"],
+    try {
+      await saveProductMutation({
+        id: editId,
+        values,
+        imageFile: imageFile?.[0],
       });
 
       reset();
       onCloseModal?.();
-    },
-    onError: (err) => toast.error(err.message),
-  });
+    } catch (error) {
+      console.error(error.message);
+    }
+    /* if (isEditing) {
+      updateProductMutation.mutate(formData);
+    } else {
+      createProductMutation.mutate(formData);
+    } */
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -239,6 +224,32 @@ export default function CreateProductForm({
             {errors.active.message}
           </span>
         )}
+      </FormRow>
+
+      <FormRow fieldName="product-image">
+        <input
+          id="product-image"
+          type="file"
+          accept="image/webp, image/png, image/jpeg"
+          {...register("imageFile", {
+            validate: (files) => {
+              const file = files?.[0];
+
+              if (!file) return true;
+              if (file.size > 2 * 1024 * 1024) {
+                return "Image must be smaller than 2MB";
+              }
+
+              if (
+                !["image/webp", "image/png", "image/jpeg"].includes(file.type)
+              ) {
+                return "unsupported image format";
+              }
+              return true;
+            },
+          })}
+        />
+        {errors.productImage && <p>{errors.productImage.message}</p>}
       </FormRow>
 
       <input type="hidden" id="id" value={editId} {...register("id")} />
