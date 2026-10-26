@@ -8,9 +8,9 @@ export default function ConfirmDelete({
 }) {
   return (
     <div className="flex w-160 flex-col gap-5 [&_div]:flex [&_div]:justify-end [&_div]:gap-5 [&_p]:mb-5 [&_p]:text-gray-500">
-      <h3 className="text-[2rem] leading-[1.4] font-medium">
+      <h2 className="text-5xl leading-[1.4] font-bold">
         Delete {resourceName}
-      </h3>
+      </h2>
       <p>
         Are you sure you want to delete this {resourceName} permanently? This
         action cannot be undone.

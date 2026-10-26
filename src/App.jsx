@@ -13,6 +13,9 @@ import Purchasing from "./pages/Purchasing";
 import Settings from "./pages/Settings";
 import Supplier from "./pages/Supplier";
 import Category from "./pages/Category";
+import { AuthProvider } from "./features/authentication/AuthContext";
+import LoginPage from "./features/authentication/LoginPage";
+import ProtectedRoute from "./features/authentication/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,45 +28,50 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<Navigate replace to="dashboard" />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="products" element={<Products />} />
-            <Route path="products/:productId" element={<Product />} />
+      <AuthProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AppLayout />}>
+                <Route index element={<Navigate replace to="dashboard" />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="products" element={<Products />} />
+                <Route path="products/:productId" element={<Product />} />
 
-            <Route path="suppliers" element={<Suppliers />} />
-            <Route path="suppliers/:supplierId" element={<Supplier />} />
-            <Route path="categories" element={<Categories />} />
-            <Route path="categories/:categoryId" element={<Category />} />
-            <Route path="purchasing" element={<Purchasing />} />
-            <Route path="reports" element={<Reports />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-      <Toaster
-        position="top-center"
-        gutter={12}
-        containerStyle={{ margin: "8px" }}
-        toastOptions={{
-          success: {
-            duration: 3000,
-          },
-          error: {
-            duration: 5000,
-          },
-          style: {
-            fontSize: "16px",
-            maxWidth: "500px",
-            padding: "16px 24px",
-            backgroundColor: "var(--color-grey-0)",
-            color: "var(--color-grey-700)",
-          },
-        }}
-      />
+                <Route path="suppliers" element={<Suppliers />} />
+                <Route path="suppliers/:supplierId" element={<Supplier />} />
+                <Route path="categories" element={<Categories />} />
+                <Route path="categories/:categoryId" element={<Category />} />
+                <Route path="purchasing" element={<Purchasing />} />
+                <Route path="reports" element={<Reports />} />
+                <Route path="settings" element={<Settings />} />
+              </Route>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: "8px" }}
+          toastOptions={{
+            success: {
+              duration: 3000,
+            },
+            error: {
+              duration: 5000,
+            },
+            style: {
+              fontSize: "16px",
+              maxWidth: "500px",
+              padding: "16px 24px",
+              backgroundColor: "var(--color-grey-0)",
+              color: "var(--color-grey-700)",
+            },
+          }}
+        />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

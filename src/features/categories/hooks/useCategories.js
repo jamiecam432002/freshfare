@@ -8,13 +8,16 @@ export function useCategories() {
   const statusFilter = searchParams.get("status");
   const search = searchParams.get("search");
 
+  // PAGINATION
+  const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+
   const {
     isLoading,
     data: { data: categories, count } = {},
     error,
   } = useQuery({
-    queryKey: ["categories", statusFilter, search],
-    queryFn: () => getCategories(statusFilter, search),
+    queryKey: ["categories", statusFilter, page, search],
+    queryFn: () => getCategories(statusFilter, page, search),
   });
 
   return { isLoading, error, categories, count };

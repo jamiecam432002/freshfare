@@ -1,7 +1,8 @@
 import { uploadThumbnailImage } from "@/services/apiStorage";
 import supabase from "../../../services/supabase";
+import { PAGE_SIZE } from "../../../utils/constants";
 
-export async function getSuppliers(status, search) {
+export async function getSuppliers(status, page, search) {
   let query = supabase
     .from("suppliers_with_counts")
     .select("*", { count: "exact" });
@@ -17,6 +18,12 @@ export async function getSuppliers(status, search) {
   }
   if (status === "inactive") {
     query = query.eq("active", false);
+  }
+
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
   }
 
   const { data, error, count } = await query;

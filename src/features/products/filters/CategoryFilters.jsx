@@ -13,7 +13,7 @@ import { HiOutlineSquares2X2 } from "react-icons/hi2";
 
 export default function CategoryFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data: categories = [], count } = useCategories();
+  const { categories = [], isLoading, count } = useCategories();
   const categoryId = searchParams.get("category_id") ?? "all";
 
   const categoryItems = [

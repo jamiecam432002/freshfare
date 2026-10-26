@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Table from "@/ui/Table";
 import ProductImage from "./ProductImage";
 import { useDeleteProduct } from "../hooks/useProductMutations";
+import AdjustStockForm from "@/features/inventory/AdjustStockForm";
 
 export default function ProductRow({ product }) {
   const {
@@ -58,6 +59,9 @@ export default function ProductRow({ product }) {
                 <Modal.Open opens="delete">
                   <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
                 </Modal.Open>
+                <Modal.Open opens="adjust-stock">
+                  <Menus.Button icon={<HiPencil />}>Adjust Stock</Menus.Button>
+                </Modal.Open>
               </Menus.List>
             </Menus.Menu>
 
@@ -70,6 +74,9 @@ export default function ProductRow({ product }) {
                 disabled={isDeleting}
                 onConfirm={() => deleteProduct(id)}
               />
+            </Modal.Window>
+            <Modal.Window name="adjust-stock">
+              <AdjustStockForm product={product} />
             </Modal.Window>
           </Modal>
         </div>

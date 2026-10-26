@@ -7,6 +7,8 @@ import { useSuppliers } from "@/features/suppliers/hooks/useSuppliers";
 import { useCategories } from "@/features/categories/hooks/useCategories";
 import { useSaveProduct } from "../hooks/useProductMutations";
 
+const EMPTY_ARRAY = [];
+
 export default function CreateProductForm({
   onCloseModal,
   productToEdit = {},
@@ -14,8 +16,8 @@ export default function CreateProductForm({
   const { id: editId, ...editValues } = productToEdit;
   const isEditing = Boolean(editId);
 
-  const { data: categories } = useCategories();
-  const { data: suppliers } = useSuppliers();
+  const { categories = EMPTY_ARRAY } = useCategories();
+  const { suppliers = EMPTY_ARRAY } = useSuppliers();
   const { mutateAsync: saveProductMutation, isPending } = useSaveProduct();
 
   const {
@@ -50,15 +52,13 @@ export default function CreateProductForm({
     } catch (error) {
       console.error(error.message);
     }
-    /* if (isEditing) {
-      updateProductMutation.mutate(formData);
-    } else {
-      createProductMutation.mutate(formData);
-    } */
   }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <h2 className="mb-5 text-5xl font-bold">
+        {isEditing ? "Update Product" : "Create Product"}
+      </h2>
       <FormRow fieldName="name">
         <input
           type="text"

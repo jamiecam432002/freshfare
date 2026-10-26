@@ -31,7 +31,7 @@ export default function SearchFilter() {
       <Search className="text-grey-500 absolute top-1/2 left-3 size-8 w-[2.4rem] -translate-y-1/2" />
       <input
         type="search"
-        placeholder="Search products..."
+        placeholder="Search..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
         className="border-grey-200 h-16 w-full rounded-md border pr-3 pl-16 text-[1.6rem]"

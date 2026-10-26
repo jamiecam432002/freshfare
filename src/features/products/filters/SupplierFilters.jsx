@@ -12,7 +12,7 @@ import { useSuppliers } from "@/features/suppliers/hooks/useSuppliers";
 
 export default function SupplierFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data: suppliers = [] } = useSuppliers();
+  const { suppliers = [], isLoading, count } = useSuppliers();
   const supplierId = searchParams.get("supplier_id") ?? "all";
 
   const supplierItems = [
